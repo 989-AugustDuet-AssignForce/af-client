@@ -4,9 +4,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReservationService } from './reservation.service';
 
 
-/*
-    
-*/
 
 describe('ReservationService', () => {
   let service: ReservationService;
