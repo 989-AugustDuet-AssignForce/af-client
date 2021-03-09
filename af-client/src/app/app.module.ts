@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LocationComponent } from './location/location.component';
-import { ReservationComponent } from './reservation/reservation.component';
-import { BuildingComponent } from './building/building.component';
-import { RoomComponent } from './room/room.component';
+import { LocationComponent } from './components/location/location.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
+import { BuildingComponent } from './components/building/building.component';
+import { RoomComponent } from './components/room/room.component';
+import { LocationService } from './services/location.service';
+import { ReservationService } from './services/reservation.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,10 @@ import { RoomComponent } from './room/room.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    LocationService,
+    ReservationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
