@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-$primary-color-set: (
-
-
-
-);
+/** define the color variables*/
+:root {
+    /* primary palate */
+    -orange: #f26925;  /* primary */
+    -white: #ffff; /* secondary */
+    -dkgray: #474c55; /* tertiary */
+     
+    /* Secondary palatte */
+    -blue: #72a4c2; /* primary */
+    -yellow: #fcb414; /* secondary */
+    -ltgray: #b9b9ba; /* tertiary */
+}
