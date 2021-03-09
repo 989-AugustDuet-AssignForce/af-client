@@ -1,5 +1,5 @@
 
-import { Reservation } from '../../models/reservation';
+// import { Reservation } from '../../models/reservation';
 import { ReservationService } from '../../services/reservation.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,7 +13,7 @@ export class ReservationComponent implements OnInit {
   
 
   constructor(private reservation:Reservation) {
-    // this.id = reservation.id;
+    this.id = reservation.id;
    }
 
   ngOnInit(): void {
