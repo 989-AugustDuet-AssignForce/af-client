@@ -10,17 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationComponent implements OnInit {
 
-  reservationList:Array<Reservation>;
-  selectedReservation?:Reservation;
+  
 
-  constructor(private reservationService:ReservationService) {
-    // this.reservationList = reservationService.getAllReservations();
+  constructor(private reservation:Reservation) {
+    // this.id = reservation.id;
    }
 
   ngOnInit(): void {
   }
 
-  onSelectReservation(reservation: Reservation): void {
-    this.selectedReservation = reservation;
-  }
+  // onSelectReservation(reservation: Reservation): void {
+  //   this.selectedReservation = reservation;
+  // }
 }
