@@ -1,5 +1,5 @@
 
-// import { Reservation } from '../../models/reservation';
+import { Reservation } from '../../models/reservation';
 import { ReservationService } from '../../services/reservation.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent implements OnInit {
+
+  
+  
 
   
 
