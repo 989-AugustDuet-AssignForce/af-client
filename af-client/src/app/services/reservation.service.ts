@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Reservation } from '../models/reservation';
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +7,7 @@ import { Injectable } from '@angular/core';
 export class ReservationService {
 
   constructor() { }
+
+  getAllReservations() {}
+
 }

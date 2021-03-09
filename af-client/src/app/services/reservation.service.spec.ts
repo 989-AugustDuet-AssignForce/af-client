@@ -20,7 +20,7 @@ describe('ReservationService', () => {
 
   //placeholder test delete or change but service should be tested for valid reservation times??
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(service).toBeTruthy(); 
   });
 
   //test if the service gives an array of reservations

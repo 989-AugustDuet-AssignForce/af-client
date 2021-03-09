@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { LocationService } from './location.service';
+import { LocationDto } from '../models/location-dto';
 
 describe('LocationService', () => {
   let service: LocationService;
@@ -35,26 +36,26 @@ describe('LocationService', () => {
 
   //test	public List<LocationDto> getLocationsByState(String state)
   it('should return an array', () => {
-    const locale = service.getLocationsByState("New Jersey");
+    const locale = service.getLocationsByState("FL");
     expect(locale).toBeInstanceOf(Array);
   });
 
   //test	public List<LocationDto> getLocationsByCity(String city)
   it('should return an array', () => {
-    const locale = service.getLocationsByCity("Minneapolis");
+    const locale = service.getLocationsByCity("Tampa");
     expect(locale).toBeInstanceOf(Array);
   });
 
   //test	public List<LocationDto> getLocationsByZipCode(String zipCode)
   it('should return an array', () => {
-    const locale = service.getLocationsbyZipCode("55555");
+    const locale = service.getLocationsByZipCode("33620");
     expect(locale).toBeInstanceOf(Array);
   });
 
   //test	public LocationDto getLocation( int index)
-  it('should return an array', () => {
-    const locale = service.getLocation(123);
-    expect(locale).toBeInstanceOf(LocationDTO);
+  it('should return a single location', () => {
+    const locale = service.getLocationById(1);
+    expect(locale).toBeInstanceOf(LocationDto);
   });
 
   //test	public void updateState(int index,String state)

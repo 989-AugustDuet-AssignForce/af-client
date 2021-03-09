@@ -10,6 +10,7 @@ import { RoomComponent } from './components/room/room.component';
 import { LocationService } from './services/location.service';
 import { ReservationService } from './services/reservation.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,10 +23,12 @@ import { ReservationService } from './services/reservation.service';
     BrowserModule,
     AppRoutingModule
   ],
+  
   providers: [
     LocationService,
     ReservationService
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

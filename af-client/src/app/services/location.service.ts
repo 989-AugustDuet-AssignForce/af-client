@@ -6,4 +6,15 @@ import { Injectable } from '@angular/core';
 export class LocationService {
 
   constructor() { }
+
+  getAllLocations() {}
+
+  getLocationsByState(state: string) {}
+
+  getLocationsByCity(city: string) {}
+
+  getLocationsByZipCode(zipCode: string) {}
+
+  getLocationById(x:number) {}
+
 }
