@@ -34,9 +34,7 @@ export class ReservationComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    const RESERVATIONS: Reservation[] = [
-      new Reservation(1,1,1,1,'PHYSICAL','CEO','01-17-2021 07:00','01-17-2021 10:00')
-    ];
+    
   }
 
   // onSelectReservation(reservation: Reservation): void {
