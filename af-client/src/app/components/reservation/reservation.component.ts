@@ -18,19 +18,24 @@ export class ReservationComponent implements OnInit {
   private startDate: string;
   private endDate: string;
 
-  constructor(reservation: Reservation) {
-    this.id = reservation.id;
-    this.batchId = reservation.batchId;
-    this.buildingId = reservation.buildingId;
-    this.locationId = reservation.locationId;
-    this.roomId = reservation.roomId;
-    this.roomType = reservation.roomType;
-    this.reserver = reservation.reserver;
-    this.startDate = reservation.startDate;
-    this.endDate = reservation.endDate;
-  }
+  
+
+  // constructor(reservation: Reservation) {
+  //   this.id = reservation.id;
+  //   this.batchId = reservation.batchId;
+  //   this.buildingId = reservation.buildingId;
+  //   this.locationId = reservation.locationId;
+  //   this.roomId = reservation.roomId;
+  //   this.roomType = reservation.roomType;
+  //   this.reserver = reservation.reserver;
+  //   this.startDate = reservation.startDate;
+  //   this.endDate = reservation.endDate;
+  // }
 
   ngOnInit(): void {
+    const RESERVATIONS: Reservation[] = [
+      new Reservation(1,1,1,1,'PHYSICAL','CEO','01-17-2021 07:00','01-17-2021 10:00')
+    ];
   }
 
   // onSelectReservation(reservation: Reservation): void {

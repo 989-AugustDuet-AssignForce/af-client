@@ -14,3 +14,7 @@
     /* specify logo padding arbitray amount for now */
     padding: 4%; /* supposed to be the size of the 'R' in the logo*/
 }
+/* everywhere else */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+  }
