@@ -1,6 +1,7 @@
-import { Reservation } from '../../models/reservation';
+
 import { ReservationService } from '../../services/reservation.service';
 import { Component, OnInit } from '@angular/core';
+import { Reservation } from 'src/app/models/reservation';
 
 @Component({
   selector: 'app-reservation',
