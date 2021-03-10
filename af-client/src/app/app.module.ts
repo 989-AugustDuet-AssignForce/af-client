@@ -13,7 +13,6 @@ import { BuildingComponent } from './components/building/building.component';
 import { RoomComponent } from './components/room/room.component';
 import { LocationService } from './services/location.service';
 import { ReservationService } from './services/reservation.service';
-import { RoomCalendarComponent } from './components/room-calendar/room-calendar.component';
 
 
 @NgModule({
@@ -23,7 +22,7 @@ import { RoomCalendarComponent } from './components/room-calendar/room-calendar.
     ReservationComponent,
     BuildingComponent,
     RoomComponent,
-    RoomCalendarComponent
+    
   ],
   imports: [
     BrowserModule,
