@@ -1,14 +1,14 @@
 /** define the color variables for the application style guide */
 :root {
     /* primary palate */
-    -orange: #f26925;  /* primary */
-    -white: #ffff; /* secondary */
-    -dkgray: #474c55; /* tertiary */
+    --orange: #f26925;  /* primary */
+    --white: #ffff; /* secondary */
+    --dkgray: #474c55; /* tertiary */
 
     /* Secondary palatte */
-    -blue: #72a4c2; /* primary */
-    -yellow: #fcb414; /* secondary */
-    -ltgray: #b9b9ba; /* tertiary */
+    --blue: #72a4c2; /* primary */
+    --yellow: #fcb414; /* secondary */
+    --ltgray: #b9b9ba; /* tertiary */
 }
 #logo:defined {
     /* specify logo padding arbitray amount for now */

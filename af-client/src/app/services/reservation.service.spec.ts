@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Reservation } from '../models/reservation';
 
 import { ReservationService } from './reservation.service';
 
@@ -31,7 +32,7 @@ describe('ReservationService', () => {
 
   //test if the information can be gotten by roomId
   it('should be an array', () => {
-    const reserved = service.getReservationByRoomId(1402);
+    const reserved = service.getAllReservationsByRoomId(1402);
     expect(reserved).toBeInstanceOf(Array);
   });
 
@@ -41,47 +42,34 @@ describe('ReservationService', () => {
     expect(reserve).toBeInstanceOf(Reservation);
   });
 
-  //test if the object could be stored in the service??
-  it('should be an array', () => {
-    const rooms = service.getAllAvailableRoomsByType(12,"PHYSICAL");
-    expect(rooms).toBeInstanceOf(Array);
-  });
-
   //test Reservation addReservation(Reservation reservation);
   it('should be an object', () => {
-    Reservation r = new Reservation();
-    const reserve =service.addReservation(r);
+    let reservation: Reservation;
+    const reserve = service.addReservation(reservation);
     expect(reserve).toBeInstanceOf(Reservation);
   });  
 
   //test  Reservation updateReservation(Reservation reservation);
   it('should be an object', () => {
-    Reservation r = new Reservation(); // is this needed?
-    const reserve =service.updateReservation(r);
+    let reservation: Reservation; // is this needed?
+    const reserve =service.updateReservation(reservation);
     expect(reserve).toBeInstanceOf(Reservation);
 
   });
   
   //test  void deleteReservation(Integer reservationId);
-  // it('should be an object', () => {
+   it('should be an object', () => {
 
-  // });
+   });
   
-  //test  void assignBatch(Integer reservationId, Integer batchId);
-  // it('should be an object', () => {
-
-  // });
-  
-  //test  boolean isValidReservation(Reservation reservation);
+  //test  void assignBatch(Reservation reservation, Integer batchId);
   it('should be an object', () => {
-    Reservation res = new Reservation();
-    const result = service.isValidReservation(res);
-    expect(result).toBeTruthy();
-  });
+    let reservation: Reservation;
+   });
   
   //test  List<Reservation> findTrainingStations();
   it('should be an array', () => {
-    const trainStations = service.findTrainingStations();
+    const trainStations = service.getTrainingStationReservations();
     expect(trainStations).toBeInstanceOf(Array);
   });
 

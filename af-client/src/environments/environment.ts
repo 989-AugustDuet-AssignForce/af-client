@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  caliberUrl: "https://caliber2-mock.revaturelabs.com:443/mock/training/",
+  locationBackendUrl: "",
+  reservartionBackendUrl: "http://localhost:8080/"
 };
 
 /*

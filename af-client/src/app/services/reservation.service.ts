@@ -1,26 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Reservation } from '../models/reservation';
+import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  getReservationById() { }
+  getReservationById( reservationId: number ) { }
 
   getAllReservations() { }
 
-  getAllReservationsByRoomId() { }
+  getAllReservationsByRoomId( roomId: number) { }
 
-  addReservation() { }
+  addReservation( reservation: Reservation ) { }
 
-  updateReservation() { }
+  updateReservation( reservation: Reservation ) { }
 
-  deleteReservation() { }
+  deleteReservation( reservationId: number) { }
 
-  assignBatch() { }
+  async assignBatch( reservation: Reservation, batchId: number ) {
+    const url = environment.reservartionBackendUrl + `api/reservations/${reservation.id}/${batchId}`;
+
+    let response = await this.httpClient.put( url, null, {
+      observe: 'response'
+    }).toPromise().catch( (err) => {
+
+    });
+
+    // display response?
+  }
 
   getTrainingStationReservations() {}
 }
