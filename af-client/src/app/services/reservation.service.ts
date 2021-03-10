@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-import { Reservation } from 'src/app/models/reservation';
-=======
 import { Reservation } from '../models/reservation';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
->>>>>>> main
 
 @Injectable({
   providedIn: 'root'
