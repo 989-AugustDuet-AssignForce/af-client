@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { LocationComponent } from './components/location/location.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { BuildingComponent } from './components/building/building.component';
@@ -23,7 +26,8 @@ import { ReservationService } from './services/reservation.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   
   providers: [
