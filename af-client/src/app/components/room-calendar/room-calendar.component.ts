@@ -11,20 +11,12 @@ import { CalendarEvent, CalendarView } from 'angular-calendar';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None, // hack to get the styles to apply locally
   templateUrl: './room-calendar.component.html',
-  styleUrls: ['./room-calendar.component.css'],
-  // you should really include this CSS in your global stylesheet
-  styles: [
-    `
-      .my-custom-class span {
-        color: #ff3d7f !important;
-      }
-    `,
-  ]
+  styleUrls: ['./room-calendar.component.css']
 })
 
 export class RoomCalendarComponent implements OnInit {
 
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Week;
 
   viewDate: Date = new Date();
 
