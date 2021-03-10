@@ -13,6 +13,7 @@ import { BuildingComponent } from './components/building/building.component';
 import { RoomComponent } from './components/room/room.component';
 import { LocationService } from './services/location.service';
 import { ReservationService } from './services/reservation.service';
+import { RoomCalendarComponent } from './components/room-calendar/room-calendar.component';
 
 
 @NgModule({
@@ -21,13 +22,18 @@ import { ReservationService } from './services/reservation.service';
     LocationComponent,
     ReservationComponent,
     BuildingComponent,
-    RoomComponent
+    RoomComponent,
+    RoomCalendarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide:DateAdapter,
+      useFactory:adapterFactory
+    })
   ],
   
   providers: [
