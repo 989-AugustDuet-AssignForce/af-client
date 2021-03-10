@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 // import { colors } from '../demo-utils/colors';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
+
 @Component({
   selector: 'app-room-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,6 +21,7 @@ import { CalendarEvent, CalendarView } from 'angular-calendar';
     `,
   ]
 })
+
 export class RoomCalendarComponent implements OnInit {
 
   view: CalendarView = CalendarView.Month;
