@@ -1,19 +1,11 @@
-<p>location works!</p>
+<h2>Location List</h2>
 <div class="location-list">
-    <ul>
-        <li *ngFor="let location of locations" 
-        [selectedLocation]="location"
-        (click)="onSelect(location)"
-        >
-            <a >
-                <span class="badge">{{location.locationId}}</span> {{location.city}}    {{location.state}}
-            </a>
-          
-        </li>
-    </ul>
-    
-  </div>
-  <!-- routerLink="detail/{{location.locationId}}" -->
-  
-  <app-location-detail [selectedLocation]="selectedLocation"></app-location-detail>
-  
+  <ul>
+    <li *ngFor="let location of locations">
+      <a routerLink="detail/{{location.locationId}}">
+        <span class="badge">{{ location.locationId }}</span>
+        {{ location.city }} {{ location.state }}
+      </a>
+    </li>
+  </ul>
+</div>

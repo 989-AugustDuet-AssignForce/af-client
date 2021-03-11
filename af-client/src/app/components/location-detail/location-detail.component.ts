@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { LocationService } from '../../services/location.service';
+import { LocationDto } from 'src/app/models/location-dto';
 
 @Component({
   selector: 'app-location-detail',
@@ -11,21 +12,21 @@ import { LocationService } from '../../services/location.service';
   styleUrls: ['./location-detail.component.css'],
 })
 export class LocationDetailComponent implements OnInit {
-  @Input() selectedLocation: any;
+  locationDto: LocationDto
   constructor(private locationService: LocationService,
     private route: ActivatedRoute,
     private location: Location
     ) {}
 
     ngOnInit(): void {
-      //this.getHero();
+      this.getLocation();
     }
   
-    // getHero(): void {
-    //   const id = +this.route.snapshot.paramMap.get('id');
-    //   this.locationService.getLocation(id)
-    //     .subscribe(location => this.locationDto = location);
-    // }
+    getLocation(): void {
+      const id = +this.route.snapshot.paramMap.get('locationId');
+      this.locationService.getLocation(id)
+        .subscribe(location => this.locationDto = location);
+    }
   
     goBack(): void {
       this.location.back();

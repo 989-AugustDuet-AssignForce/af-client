@@ -1,5 +1,23 @@
 <p>location-detail works!</p>
 <div >
-
-    <h2>{{selectedLocation.city}}</h2>
+    <h2>Location: {{locationDto.city| uppercase}} Details</h2>
+    <div><span>id: </span>{{locationDto.locationId}}</div>
+  <div>
+    <label for="location-city">Location city: </label>
+    <input id="location-city" [(ngModel)]="locationDto.city" placeholder="city"/>
   </div>
+  <div>
+    <label for="location-state">Location state: </label>
+    <input id="location-state" [(ngModel)]="locationDto.state" placeholder="State"/>
+  </div>
+  <div>
+    <label for="location-zipCode">Location zipCode: </label>
+    <input id="location-zipCode" [(ngModel)]="locationDto.zipCode" placeholder="zipCode"/>
+  </div>
+  <div>
+    <label for="location-numBuildings">Location numBuildings: </label>
+    <input id="location-numBuildings" [(ngModel)]="locationDto.numBuildings" placeholder="numBuildings"/>
+  </div>
+</div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="goBack()">Update</button>

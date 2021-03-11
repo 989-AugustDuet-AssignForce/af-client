@@ -5,8 +5,6 @@ import {
 
 import { LocationDto } from '../../models/location-dto';
 import { LocationService } from '../../services/location.service';
-import { MessageService } from '../../services/message.service';
-
 
 @Component({
   selector: 'app-location',
@@ -15,18 +13,7 @@ import { MessageService } from '../../services/message.service';
 })
 export class LocationComponent implements OnInit {
   locations: LocationDto[];
-  selectedLocation: LocationDto;
-  constructor(private locationService: LocationService,
-    private messageService: MessageService) { }
-
-  // onSelect(location: LocationDto): void {
-  //   this.selectedLocation = location;
-  // }
-
-  onSelect(location: LocationDto): void {
-    this.selectedLocation = location;
-    this.messageService.add(`LocationComponent: Selected location id=${location.locationId}`);
-  }
+  constructor(private locationService: LocationService) { }
 
   getLocations(): void {
     this.locationService

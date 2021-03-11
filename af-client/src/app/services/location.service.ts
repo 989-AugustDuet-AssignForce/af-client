@@ -27,14 +27,14 @@ export class LocationService {
   getLocationById(x:number) {}
 
   getLocations(): Observable<LocationDto[]> {
-    const locations = of(LOCATIONS);
+    
     this.messageService.add('LocationService: fetched locations');
-      return locations;
+      return of(LOCATIONS);
   }
 
-  // getLocation(): Observable<LocationDto> {
-  //   this.messageService.add(`LocationService: fetched location locationId=${id}`);
-  // return of(LOCATIONS.find(location => location.locationId === id));
-  // }
+  getLocation(id:number): Observable<LocationDto> {
+    this.messageService.add(`LocationService: fetched location locationId=${id}`);
+  return of(LOCATIONS.find(location => location.locationId === id));
+  }
 
 }
