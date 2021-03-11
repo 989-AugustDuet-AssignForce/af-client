@@ -10,8 +10,8 @@
     --yellow: #fcb414; /* secondary */
     --ltgray: #b9b9ba; /* tertiary */
 }
-#logo:defined {
-    /* specify logo padding arbitray amount for now */
+#logo {
+    /* specify logo margin, logo is 94px tall 'R' is 29px tall so 33% margin */
     margin: 29px; /* supposed to be the size of the 'R' in the logo*/
 }
 @font-face {
