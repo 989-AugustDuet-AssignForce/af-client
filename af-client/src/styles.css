@@ -16,10 +16,10 @@
 }
 @font-face {
     font-family: 'futura-std', arial;
-    src: url('assets/fonts/Futura-Std-Bold.otf'),
-         url('assets/fonts/Futura-Std-Book.otf'),
-         url('assets/fonts/Futura-Std-Heavy.otf'),
-         url('assets/fonts/Futura-Std-Medium.otf');   
+    src: url('assets/fonts/Futura-Std-Bold.otf') format('otf'),
+         url('assets/fonts/Futura-Std-Book.otf') format('otf'),
+         url('assets/fonts/Futura-Std-Heavy.otf') format('otf'),
+         url('assets/fonts/Futura-Std-Medium.otf') format('otf');   
 }
 /* everywhere else */
 * {
