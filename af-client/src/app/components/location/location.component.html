@@ -2,10 +2,10 @@
 <div class="location-list">
     <ul>
         <li *ngFor="let location of locations" 
-        
+        [selectedLocation]="location"
         (click)="onSelect(location)"
         >
-            <a [selectedLocation] = "location" routerLink="detail/{{location.locationId}}">
+            <a >
                 <span class="badge">{{location.locationId}}</span> {{location.city}}    {{location.state}}
             </a>
           
@@ -14,5 +14,6 @@
     
   </div>
   
-  <!-- [selectedLocation]="location" -->
-  <!-- <app-location-detail [location]="selectedLocation"></app-location-detail> -->
+  <!-- routerLink="detail/{{location.locationId}}" -->
+  <app-location-detail [selectedLocation]="selectedLocation"></app-location-detail>
+  

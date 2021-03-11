@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {LOCATIONS } from '../../models/mock-location'
-import {LocationDto } from '../../models/location-dto'
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+
+import { LocationDto } from '../../models/location-dto';
+import { LOCATIONS } from '../../models/mock-location';
 
 @Component({
   selector: 'app-location',
@@ -17,5 +21,4 @@ export class LocationComponent implements OnInit {
   ngOnInit(): void {
     
   }
-
 }
