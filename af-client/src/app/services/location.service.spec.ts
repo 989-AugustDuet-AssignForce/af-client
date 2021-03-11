@@ -27,7 +27,7 @@ describe('LocationService', () => {
   //   const locale = service.getLocationData();
   //   expect(locale).toBeInstanceOf(Array);
   // });
-  /*
+
   //test	public List<LocationDto> getAllLocations()
   it('should return an array', () => {
     const locale = service.getAllLocations();
@@ -147,6 +147,6 @@ describe('LocationService', () => {
     const locale = service.getAllRooms();
     expect(locale).toBeInstanceOf(Array);
   });
-  */
+
 
 });

@@ -7,9 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
-    "fireTest": "ng test --browsers=Firefox"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -38,7 +36,6 @@
     "karma": "~6.1.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
-    "karma-firefox-launcher": "^2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
