@@ -5,7 +5,7 @@
         [selectedLocation]="location"
         (click)="onSelect(location)"
         >
-            <a >
+            <a routerLink="detail/{{location.locationId}}">
                 <span class="badge">{{location.locationId}}</span> {{location.city}}    {{location.state}}
             </a>
           
@@ -14,6 +14,6 @@
     
   </div>
   
-  <!-- routerLink="detail/{{location.locationId}}" -->
+  
   <app-location-detail [selectedLocation]="selectedLocation"></app-location-detail>
   

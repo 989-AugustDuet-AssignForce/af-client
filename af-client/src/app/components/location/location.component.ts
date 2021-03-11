@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { LocationDto } from '../../models/location-dto';
-import { LOCATIONS } from '../../models/mock-location';
+import { LocationService } from '../../services/location.service';
 
 @Component({
   selector: 'app-location',
@@ -12,13 +12,17 @@ import { LOCATIONS } from '../../models/mock-location';
   styleUrls: ['./location.component.css']
 })
 export class LocationComponent implements OnInit {
-  locations = LOCATIONS
+  locations: LocationDto[]
   selectedLocation: LocationDto
-  constructor() { }
+  constructor(private locationService: LocationService) { }
   onSelect(location: LocationDto): void {
     this.selectedLocation = location;
   }
+
+  getLocations():void {
+    this.locations = this.locationService.getLocations();
+  }
   ngOnInit(): void {
-    
+    this.getLocations();
   }
 }
