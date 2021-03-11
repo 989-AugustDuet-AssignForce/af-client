@@ -5,3 +5,7 @@
 .getLocationOptions > form > button {
     margin-left: 15px;
 }
+
+.getLocationByTwoDropDowns > form > button {
+    margin-left: 15px;
+}

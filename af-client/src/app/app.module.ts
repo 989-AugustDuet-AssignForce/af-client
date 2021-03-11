@@ -21,8 +21,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ReservationComponent,
     BuildingComponent,
     RoomComponent,
-    NavbarComponent,
-    
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

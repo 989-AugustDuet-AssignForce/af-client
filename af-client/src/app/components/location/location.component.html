@@ -1,5 +1,71 @@
-<div class="container">
+<div class="location-container">
     
+    <div class="getLocationByTwoDropDowns">
+        <h3>Search Locations:</h3>
+        <form #typeForm="ngForm" (ngSubmit)="selectSearchType(typeForm)">
+            <label>Search Type </label>
+            <select name="searchType" id="search-type" ngModel>
+                <option value="id">ID</option>
+                <option value="city">City</option>
+                <option value="state">State</option>
+                <option value="zip">Zip Code</option>
+            </select>
+            <button type="submit">>>></button>
+        </form>
+        <br>
+    </div>
+
+
+
+
+
+    <div class="getLocationOptions">
+        <form #idForm="ngForm" (ngSubmit)="searchId(idForm)" id="id-form" style="display: none;">
+            <span>ID: </span>
+            <select name="searchId" id="type-id" ngModel>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <button>Search</button>
+        </form>
+
+        <form #cityForm="ngForm" (ngSubmit)="searchCity(cityForm)" id="city-form" style="display: none;">
+            <span>City: </span>
+            <select name="searchCity" id="type-city" ngModel>
+                <option value="reston">Reston</option>
+                <option value="tampa">Tampa</option>
+                <option value="arlington">Arlington</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+
+        <form #stateForm="ngForm" (ngSubmit)="searchState(stateForm)" id="state-form" style="display: none;">
+            <span>State: </span>
+            <select name="searchState" id="type-state" ngModel>
+                <option value="VA">VA</option>
+                <option value="FL">FL</option>
+                <option value="TX">TX</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+
+        <form #zipForm="ngForm" (ngSubmit)="searchZip(zipForm)" id="zip-form" style="display: none;">
+            <span>Zip Code: </span>
+            <select name="searchZip" id="type-zip" ngModel>
+                <option value="20190">20190</option>
+                <option value="33620">33620</option>
+                <option value="76019">76019</option>
+            </select>
+            <button>Search</button>
+        </form> 
+    </div>
+    <br><hr>
+
+    <br>
+    <div id="search-results-div"></div>
+    <br>
+
     <hr>
     <h3>All Locations:</h3>
     <div 
@@ -15,73 +81,9 @@
         <span>{{location.numBuildings}}</span>
         <br><br>
     </div>
-    <br><br><br>
-
-    <hr>
-
-    <div class="getLocationOptions">
-        <h3>Search Locations:</h3>
-        <form #cityForm="ngForm" (ngSubmit)="searchCity(cityForm)">
-            <span>City: </span>
-            <select name="searchCity" id="type-city" ngModel>
-                <option value="reston">Reston</option>
-                <option value="tampa">Tampa</option>
-                <option value="arlington">Arlington</option>
-            </select>
-            <button type="submit">Search</button>
-        </form>
-        <br>
-
-        <form #stateForm="ngForm" (ngSubmit)="searchState(stateForm)">
-            <span>State: </span>
-            <select name="searchState" id="type-state" ngModel>
-                <option value="VA">VA</option>
-                <option value="FL">FL</option>
-                <option value="TX">TX</option>
-            </select>
-            <button type="submit">Search</button>
-        </form>
-        <br>
-
-        <form #zipForm="ngForm" (ngSubmit)="searchZip(zipForm)">
-            <span>Zip Code: </span>
-            <select name="searchZip" id="type-zip" ngModel>
-                <option value="20190">20190</option>
-                <option value="33620">33620</option>
-                <option value="76019">76019</option>
-            </select>
-            <button>Search</button>
-        </form>
-        <br>
-
-        <form #idForm="ngForm" (ngSubmit)="searchId(idForm)">
-            <span>ID: </span>
-            <select name="searchId" id="type-id" ngModel>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <button>Search</button>
-        </form>
-    </div>
     <br>
-    <div id="testy"></div>
-    <br><br><br>
-
-
-    <!-- <div class="searchedLocations"
-        *ngFor="let searched of searchedLocations"
-    >
-        <span>ID: {{location.id}}</span>
-        <br>
-        <span>{{location.city}} </span>
-        <span>{{location.state}} </span>
-        <span>{{location.zipCode}} </span>
-        <br>
-        <span>Buildings: </span>
-        <span>{{location.numBuildings}}</span>
-        <br><br>
-    </div> -->
     
+    <hr><br>
     <button (click)="backButton()">Back</button>
+    <br><br><br>
 </div>
