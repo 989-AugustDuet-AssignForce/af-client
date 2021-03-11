@@ -20,7 +20,7 @@ export class LocationComponent implements OnInit {
   }
 
   getLocations():void {
-    this.locations = this.locationService.getLocations();
+    this.locationService.getLocations().subscribe(locations => this.locations = locations)
   }
   ngOnInit(): void {
     this.getLocations();

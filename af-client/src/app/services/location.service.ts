@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 
+import {
+  Observable,
+  of
+} from 'rxjs';
+
 import { LocationDto } from '../models/location-dto';
 import { LOCATIONS } from '../models/mock-location';
 
@@ -20,8 +25,9 @@ export class LocationService {
 
   getLocationById(x:number) {}
 
-  getLocations(): LocationDto[] {
-      return LOCATIONS;
+  getLocations(): Observable<LocationDto[]> {
+    const locations = of(LOCATIONS);
+      return locations;
   }
 
 }
