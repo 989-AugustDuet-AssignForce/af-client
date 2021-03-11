@@ -26,12 +26,12 @@
     font-display: optional;
 }
 @font-face {
-    font-family: 'Futura-Std-Heavy'arial;
+    font-family: 'Futura-Std-Heavy', arial;
     src: url('assets/fonts/Futura-Std-Heavy.otf') format('otf');
     font-display: optional;
 }
 @font-face {
-    font-family: 'Futura-Std-Medium';
+    font-family: 'Futura-Std-Medium', arial;
     src: url('assets/fonts/Futura-Std-Medium.otf') format('otf');   
     font-display: optional;
 }
