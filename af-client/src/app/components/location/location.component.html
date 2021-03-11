@@ -3,7 +3,7 @@
     <div class="getLocationByTwoDropDowns">
         <h3>Search Locations:</h3>
         <form #typeForm="ngForm" (ngSubmit)="selectSearchType(typeForm)">
-            <label>Search Type </label>
+            <label>Search By: </label>
             <select name="searchType" id="search-type" ngModel>
                 <option value="id">ID</option>
                 <option value="city">City</option>
@@ -67,7 +67,10 @@
     <br>
 
     <hr>
-    <h3>All Locations:</h3>
+    <h3>All Locations:</h3> 
+    <button>Add New Location</button>
+    <br>
+    <br>
     <div 
         *ngFor="let location of pulledLocations"
     >

@@ -22,7 +22,6 @@ export class LocationComponent implements OnInit {
     this.locationService
       .getAllLocations()
       .subscribe((locations: LocationDto[]) => {
-        console.log('getting locations');
         this.pulledLocations = locations;
       });
   }
@@ -33,25 +32,21 @@ export class LocationComponent implements OnInit {
 
   searchCity(cityForm): void {
     let city = cityForm.value.searchCity;
-    console.log(city);
     this.displayCityLocations(city);
   }
 
   searchState(stateForm): void {
     let state = stateForm.value.searchState;
-    console.log(state);
     this.displayStateLocations(state);
   }
 
   searchZip(zipForm): void {
     let zip = zipForm.value.searchZip;
-    console.log(zip);
     this.displayZipCodeLocations(zip);
   }
 
   searchId(idForm): void {
     let id = idForm.value.searchId;
-    console.log(id);
     this.displayIdLocation(id);
   }
 
@@ -71,15 +66,21 @@ export class LocationComponent implements OnInit {
             let ptag1 = document.createElement('p');
             let ptag2 = document.createElement('p');
             let ptag3 = document.createElement('p');
+            let updatebutton = document.createElement('button');
+            let deletebutton = document.createElement('button');
             h3.innerText = 'Location Search Results: ';
             ptag1.innerText = 'ID: ' + value.id;
             ptag2.innerText =
               value.city + ' ' + value.state + ' ' + value.zipCode;
             ptag3.innerText = 'Buildings: ' + value.numBuildings;
+            updatebutton.append('Update');
+            deletebutton.append('Delete');
             searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
             searchedDiv.appendChild(ptag2);
             searchedDiv.appendChild(ptag3);
+            searchedDiv.appendChild(updatebutton);
+            searchedDiv.appendChild(deletebutton);
 
             document.getElementById('search-results-div').appendChild(searchedDiv);
           }
@@ -103,15 +104,21 @@ export class LocationComponent implements OnInit {
             let ptag1 = document.createElement('p');
             let ptag2 = document.createElement('p');
             let ptag3 = document.createElement('p');
+            let updatebutton = document.createElement('button');
+            let deletebutton = document.createElement('button');
             h3.innerText = 'Location Search Results: ';
             ptag1.innerText = 'ID: ' + value.id;
             ptag2.innerText =
               value.city + ' ' + value.state + ' ' + value.zipCode;
             ptag3.innerText = 'Buildings: ' + value.numBuildings;
+            updatebutton.append('Update');
+            deletebutton.append('Delete');
             searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
             searchedDiv.appendChild(ptag2);
             searchedDiv.appendChild(ptag3);
+            searchedDiv.appendChild(updatebutton);
+            searchedDiv.appendChild(deletebutton);
 
             document.getElementById('search-results-div').appendChild(searchedDiv);
           }
@@ -135,15 +142,21 @@ export class LocationComponent implements OnInit {
             let ptag1 = document.createElement('p');
             let ptag2 = document.createElement('p');
             let ptag3 = document.createElement('p');
+            let updatebutton = document.createElement('button');
+            let deletebutton = document.createElement('button');
             h3.innerText = 'Location Search Results: ';
             ptag1.innerText = 'ID: ' + value.id;
             ptag2.innerText =
               value.city + ' ' + value.state + ' ' + value.zipCode;
             ptag3.innerText = 'Buildings: ' + value.numBuildings;
+            updatebutton.append('Update');
+            deletebutton.append('Delete');
             searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
             searchedDiv.appendChild(ptag2);
             searchedDiv.appendChild(ptag3);
+            searchedDiv.appendChild(updatebutton);
+            searchedDiv.appendChild(deletebutton);
 
             document.getElementById('search-results-div').appendChild(searchedDiv);
           }
@@ -166,6 +179,8 @@ export class LocationComponent implements OnInit {
           let ptag1 = document.createElement('p');
           let ptag2 = document.createElement('p');
           let ptag3 = document.createElement('p');
+          let updatebutton = document.createElement('button');
+          let deletebutton = document.createElement('button');
           h3.innerText = 'Location Search Results: ';
           ptag1.innerText = 'ID: ' + searchResults.id;
           ptag2.innerText =
@@ -175,6 +190,8 @@ export class LocationComponent implements OnInit {
             ' ' +
             searchResults.zipCode;
           ptag3.innerText = 'Buildings: ' + searchResults.buildings.length;
+          updatebutton.append('Update');
+          deletebutton.append('Delete');
           let buildingdiv = document.createElement('div');
 
           searchResults.buildings.forEach(function (value) {
@@ -201,6 +218,8 @@ export class LocationComponent implements OnInit {
           searchedDiv.appendChild(ptag2);
           searchedDiv.appendChild(ptag3);
           searchedDiv.appendChild(buildingdiv);
+          searchedDiv.appendChild(updatebutton);
+          searchedDiv.appendChild(deletebutton);
 
           document.getElementById('search-results-div').appendChild(searchedDiv);
         }
@@ -209,7 +228,6 @@ export class LocationComponent implements OnInit {
 
   selectSearchType(typeForm): void {
     let type = typeForm.value.searchType;
-    console.log('search type: '+type);
     if(type == 'id') {
       document.getElementById('city-form').style.display = 'none';
       document.getElementById('state-form').style.display = 'none';
@@ -232,15 +250,6 @@ export class LocationComponent implements OnInit {
       document.getElementById('zip-form').style.display = 'block';
     }
     
-  }
-
-  submitSearchType(searchForm): void {
-    let val = searchForm.value.searchValue;
-  }
-
-  print(e:Event): void {
-    e.preventDefault();
-    console.log('hello');
   }
 
 
