@@ -9,6 +9,7 @@ import { BuildingComponent } from './components/building/building.component';
 import { RoomComponent } from './components/room/room.component';
 import { LocationService } from './services/location.service';
 import { ReservationService } from './services/reservation.service';
+import { LocationDetailComponent } from './components/location-detail/location-detail.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ReservationService } from './services/reservation.service';
     LocationComponent,
     ReservationComponent,
     BuildingComponent,
-    RoomComponent
+    RoomComponent,
+    LocationDetailComponent
   ],
   imports: [
     BrowserModule,

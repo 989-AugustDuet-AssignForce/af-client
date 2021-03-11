@@ -1,1 +1,18 @@
 <p>location works!</p>
+<div class="location-list">
+    <ul>
+        <li *ngFor="let location of locations" 
+        
+        (click)="onSelect(location)"
+        >
+            <a [selectedLocation] = "location" routerLink="detail/{{location.locationId}}">
+                <span class="badge">{{location.locationId}}</span> {{location.city}}    {{location.state}}
+            </a>
+          
+        </li>
+    </ul>
+    
+  </div>
+  
+  <!-- [selectedLocation]="location" -->
+  <!-- <app-location-detail [location]="selectedLocation"></app-location-detail> -->
