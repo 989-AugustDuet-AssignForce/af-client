@@ -14,7 +14,7 @@
     /* specify logo padding arbitray amount for now */
     margin: 29px; /* supposed to be the size of the 'R' in the logo*/
 }
-@font-face: {
+@font-face {
     font-family: 'futura-std', arial;
     src: url('assets/fonts/Futura-Std-Bold.otf'),
          url('assets/fonts/Futura-Std-Book.otf'),
