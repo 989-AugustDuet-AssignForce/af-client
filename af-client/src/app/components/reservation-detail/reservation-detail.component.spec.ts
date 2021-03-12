@@ -1,16 +1,34 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ActivatedRoute } from '@angular/router';
 import { ReservationDetailComponent } from './reservation-detail.component';
 
 describe('ReservationDetailComponent', () => {
   let component: ReservationDetailComponent;
   let fixture: ComponentFixture<ReservationDetailComponent>;
 
+  const fakeActivatedRoute = {
+    snapshot: {
+      queryParams: {
+        returnUrl: '/'
+      }
+    }
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReservationDetailComponent ]
-    })
-    .compileComponents();
+      declarations: [ReservationDetailComponent],
+      imports: [
+        HttpClientTestingModule
+      ],
+      providers:
+        [
+          {
+            provide: ActivatedRoute,
+            useFactory: () => fakeActivatedRoute
+          }
+        ]
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +37,7 @@ describe('ReservationDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('ReservationDetailComponent should be created', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: af-client-svc
+  labels:
+    app: assignforce
+    service: client
+spec:
+  ports:
+    - port: 80
+      targetPort: client-http
+      name: client-svc-http
+  selector:
+    service: client
