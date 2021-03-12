@@ -61,6 +61,7 @@ export class ReservationService {
     return this.httpClient.get<Reservation[]>(url);
   }
 
+  // TODO change this to room DTO
   getAllAvailableMeetingRooms(buildingId: number, startDate: string, endDate: string) {
     const url = environment.reservartionBackendUrl + `${buildingId}/meetingrooms`;
     const requestBody = {
