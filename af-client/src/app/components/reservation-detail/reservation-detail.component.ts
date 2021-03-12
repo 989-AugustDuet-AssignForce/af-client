@@ -32,11 +32,11 @@ export class ReservationDetailComponent implements OnInit {
         .subscribe(reservation => this.reservation = reservation);
   }
 
-  async delete(): Promise<void>{
+  delete(): void{
     //const id = await this.route.snapshot.paramMap.get('reservationId');
     let res: any ;
     this.reservationService.deleteReservation(this.reservation.reservationId)
-    .subscribe(response => {res = response});
+    .subscribe();
     console.log(res);
   }
 
@@ -63,4 +63,5 @@ export class ReservationDetailComponent implements OnInit {
         console.log(this.batchError)
       });
   }
+
 }
