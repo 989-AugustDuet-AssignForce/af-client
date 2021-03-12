@@ -74,6 +74,7 @@ export class LocationComponent implements OnInit {
               value.city + ' ' + value.state + ' ' + value.zipCode;
             ptag3.innerText = 'Buildings: ' + value.numBuildings;
             updatebutton.append('Update');
+            updatebutton.style.marginRight = '10px';
             deletebutton.append('Delete');
             searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
@@ -112,6 +113,7 @@ export class LocationComponent implements OnInit {
               value.city + ' ' + value.state + ' ' + value.zipCode;
             ptag3.innerText = 'Buildings: ' + value.numBuildings;
             updatebutton.append('Update');
+            updatebutton.style.marginRight = '10px';
             deletebutton.append('Delete');
             searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
@@ -150,6 +152,7 @@ export class LocationComponent implements OnInit {
               value.city + ' ' + value.state + ' ' + value.zipCode;
             ptag3.innerText = 'Buildings: ' + value.numBuildings;
             updatebutton.append('Update');
+            updatebutton.style.marginRight = '10px';
             deletebutton.append('Delete');
             searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
@@ -191,6 +194,7 @@ export class LocationComponent implements OnInit {
             searchResults.zipCode;
           ptag3.innerText = 'Buildings: ' + searchResults.buildings.length;
           updatebutton.append('Update');
+          updatebutton.style.marginRight = '10px';
           deletebutton.append('Delete');
           let buildingdiv = document.createElement('div');
 
