@@ -35,10 +35,7 @@ export class LocationService {
   }
 
   createLocation(locationRequestDto: LocationRequestDto) {
-
-    return this.http.post<LocationRequestDto>(`${this.apiBase}/locations`, 
-    JSON.stringify(locationRequestDto))
-
+    return this.http.post<LocationRequestDto>(`${this.apiBase}/locations`, locationRequestDto)
   }
 
 }

@@ -54,9 +54,9 @@ export class LocationComponent implements OnInit {
   }
 
   postLocations(locationRequestDto: LocationRequestDto) {
-
     this.locationService.createLocation(locationRequestDto).subscribe((data: {}) => {
-          this.router.navigate(['/locations-list'])
+      alert('Location added!');
+      this.router.navigate([''])
     })
   }
 
@@ -209,7 +209,6 @@ export class LocationComponent implements OnInit {
           let buildingdiv = document.createElement('div');
 
           searchResults.buildings.forEach(function (value) {
-            console.log(value.id);
             let buildingtag1 = document.createElement('p');
             let buildingtag2 = document.createElement('p');
             let buildingtag3 = document.createElement('p');
