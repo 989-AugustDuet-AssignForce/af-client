@@ -68,7 +68,6 @@
 
     <hr>
     <h3>All Locations:</h3> 
-    <button>Add New Location</button>
     <br>
     <br>
     <div 
@@ -87,6 +86,25 @@
     <br>
     
     <hr><br>
+    <div class = "location-container">
+        <div class = "col-md-12">
+            <h3 class="mb-3 text-center">Create Location</h3>
+            <div class="form-group">
+                <input type = "text" [(ngModel)]= "locationRequestDto.state" class = "form-control" placeholder="State">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="locationRequestDto.city" class="form-control" placeholder="City">
+              </div>
+              <br>
+              <div class="form-group">
+                <input type="text" [(ngModel)]="locationRequestDto.zipCode" class="form-control" placeholder="Zip Code">
+              </div> 
+              <br> 
+        </div>
+        <button (click)="postLocations(locationRequestDto)">Add New Location</button>
+    </div>
+    <hr><br>
     <button (click)="backButton()">Back</button>
     <br><br><br>
-</div>
+    </div>

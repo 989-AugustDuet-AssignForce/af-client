@@ -1,10 +1,11 @@
 import { LocationDetailsDto } from './../../models/location-details-dto';
 import { LocationService } from './../../services/location.service';
 import { LocationDto } from './../../models/location-dto';
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { LocationRequestDto } from 'src/app/models/location-request-dto';
 
 @Component({
   selector: 'app-location',
@@ -17,6 +18,8 @@ export class LocationComponent implements OnInit {
     private locationService: LocationService,
     private router: Router
   ) {}
+
+  @Input() locationRequestDto = {state: '', city: '', zipCode: ''}
 
   ngOnInit(): void {
     this.locationService
@@ -48,6 +51,13 @@ export class LocationComponent implements OnInit {
   searchId(idForm): void {
     let id = idForm.value.searchId;
     this.displayIdLocation(id);
+  }
+
+  postLocations(locationRequestDto: LocationRequestDto) {
+
+    this.locationService.createLocation(locationRequestDto).subscribe((data: {}) => {
+          this.router.navigate(['/locations-list'])
+    })
   }
 
   displayCityLocations(city): void {
