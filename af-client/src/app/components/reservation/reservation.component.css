@@ -54,4 +54,20 @@
   .reservation span {
     margin-left: 20px;
   }
+
+  .reservation select {
+    width: 150px;
+  }
+
+  /* .reservation #addForm {
+    background-color: #cecaca;
+  } */
+  label {
+    color: #020202;
+    font-weight: bold;
+    display: block;
+    width: 100px;
+    float: left;
+    text-align: left;
+    }
   

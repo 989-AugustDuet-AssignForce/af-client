@@ -14,6 +14,7 @@ export class ReservationComponent implements OnInit {
   roomId: number;
   buildingId: number;
   reservations: Reservation[];
+  arr = [1,2,3];
 
   constructor(
     private reservationService: ReservationService,

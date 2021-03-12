@@ -1,16 +1,6 @@
 <p>reservation works!</p>
 <div class="reservation">
-  <!-- <div>
-    <form #idForm="ngForm" (ngSubmit)="getAllReservationsByRoomId(idForm)">
-      <span>ID: </span>
-      <select name="searchId" id="type-id" ngModel>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-      </select>
-      <button>Search</button>
-  </form>
-  </div> -->
+
   <div>
     <button (click)="getAllReservationsByRoomId(roomId)">search by roomId </button>
     <input  [(ngModel)]="roomId" placeholder="Room Id"/>
@@ -23,48 +13,43 @@
   </div>
 
   <!-- novalidate -->
-  <div >
+  <div id = 'addForm'>
     <form #saveForm="ngForm" (ngSubmit)="add(saveForm.value)" > 
             <h2>Add Reservation</h2>
-            <!-- <div>
-              <label for="reservation-locationId">LocationId: </label>
-              <input id="locationId" name="locationId" placeholder="locationId" ngModel/>
-            </div>      -->
             <div>
               <label for="reservation-LocationId">LocationId: </label>
               <select name="locationId" id="locationId" ngModel>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="">Select LocationId</option>
+                <option *ngFor = "let val of arr" [value]="val">{{val}}</option>
             </select>
             </div>
             <div>
               <label for="reservation-BuildingId">BuildingId: </label>
               <select name="buildingId" id="buildingId" ngModel>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="">Select BuildingId</option>
+                <option *ngFor = "let val of arr" [value]="val">{{val}}</option>
             </select>
             </div>
             <div>
               <label for="reservation-RoomId">RoomId: </label>
               <select name="roomId" id="roomId" ngModel>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="">Select RoomId</option>
+                <option *ngFor = "let val of arr" [value]="val">{{val}}</option>
             </select>
             </div>
           <div>
             <label for="reservation-roomType">RoomType: </label>
             <select name="roomType" id="roomType" ngModel>
+              <option value="">Select RoomType</option>
               <option value="0">VIRTUAL</option>
               <option value="1">PHYSICAL</option>
               <option value="2">REMOTE</option>
           </select>
           </div>
           <div>
-            <label for="reservation-roomOccupation">RoomOccupation: </label>
+            <label for="reservation-roomOccupation">Occupation: </label>
             <select name="roomOccupation" id="roomOccupation" ngModel>
+              <option value="">Select Occupation</option>
               <option value="0" selected>TRAINING</option>
               <option value="1">MEETING</option>
           </select>
