@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { LocationService } from './location.service';
 import { LocationDto } from '../models/location-dto';
+import { LocationDetailsDto } from '../models/location-details-dto';
 
 describe('LocationService', () => {
   let service: LocationService;
@@ -55,7 +56,7 @@ describe('LocationService', () => {
   //test	public LocationDto getLocation( int index)
   it('should return a single location', () => {
     const locale = service.getLocationById(1);
-    expect(locale).toBeInstanceOf(LocationDto);
+    expect(locale).toBeInstanceOf(LocationDetailsDto);
   });
 
   //test	public void updateState(int index,String state)
@@ -94,59 +95,59 @@ describe('LocationService', () => {
   //   expect(locale).toBeInstanceOf(Array);
   // });
 
-  //test   RoomDto getRoom( int i );
-  it('should return an array', () => {
-    const locale = service.getRoom(12);
-    expect(locale).toBeInstanceOf(RoomDTO);
-  });
+  // //test   RoomDto getRoom( int i );
+  // it('should return an array', () => {
+  //   const locale = service.getRoom(12);
+  //   expect(locale).toBeInstanceOf(RoomDTO);
+  // });
 
-  //test   List<RoomDto> getPhysicalMeetingRooms();
-  it('should return an array', () => {
-    const locale = service.getPhysicalMeetingRooms();
-    expect(locale).toBeInstanceOf(Array);
-  });
+  // //test   List<RoomDto> getPhysicalMeetingRooms();
+  // it('should return an array', () => {
+  //   const locale = service.getPhysicalMeetingRooms();
+  //   expect(locale).toBeInstanceOf(Array);
+  // });
 
-  //test   List<RoomDto> getPhysicalTrainingRooms();
-  it('should return an array', () => {
-    const locale = service.getPhysicalMeetingRooms();
-    expect(locale).toBeInstanceOf(Array);
-  });
+  // //test   List<RoomDto> getPhysicalTrainingRooms();
+  // it('should return an array', () => {
+  //   const locale = service.getPhysicalMeetingRooms();
+  //   expect(locale).toBeInstanceOf(Array);
+  // });
 
-  //test   List<RoomDto> getRemoteRooms();
-  it('should return an array', () => {
-    const locale = service.getRemoteRooms();
-    expect(locale).toBeInstanceOf(Array);
-  });
+  // //test   List<RoomDto> getRemoteRooms();
+  // it('should return an array', () => {
+  //   const locale = service.getRemoteRooms();
+  //   expect(locale).toBeInstanceOf(Array);
+  // });
 
-  //test   List<RoomDto> getPhysicalRooms();
-  it('should return an array', () => {
-    const locale = service.getPhysicalRooms();
-    expect(locale).toBeInstanceOf(Array);
-  });
+  // //test   List<RoomDto> getPhysicalRooms();
+  // it('should return an array', () => {
+  //   const locale = service.getPhysicalRooms();
+  //   expect(locale).toBeInstanceOf(Array);
+  // });
 
-  //test   List<RoomDto> getVirtualRooms();
-  it('should return an array', () => {
-    const locale = service.getVirtualRooms();
-    expect(locale).toBeInstanceOf(Array);
-  });
+  // //test   List<RoomDto> getVirtualRooms();
+  // it('should return an array', () => {
+  //   const locale = service.getVirtualRooms();
+  //   expect(locale).toBeInstanceOf(Array);
+  // });
 
-  //test   List<RoomDto> getMeetingRooms();
-  it('should return an array', () => {
-    const locale = service.getMeetingRooms();
-    expect(locale).toBeInstanceOf(Array);
-  });
+  // //test   List<RoomDto> getMeetingRooms();
+  // it('should return an array', () => {
+  //   const locale = service.getMeetingRooms();
+  //   expect(locale).toBeInstanceOf(Array);
+  // });
 
-  //test   List<RoomDto> getTrainingRooms();
-  it('should return an array', () => {
-    const locale = service.getTrainingRooms();
-    expect(locale).toBeInstanceOf(Array);
-  });
+  // //test   List<RoomDto> getTrainingRooms();
+  // it('should return an array', () => {
+  //   const locale = service.getTrainingRooms();
+  //   expect(locale).toBeInstanceOf(Array);
+  // });
 
-  //test   List<RoomDto> getAllRooms();
-  it('should return an array', () => {
-    const locale = service.getAllRooms();
-    expect(locale).toBeInstanceOf(Array);
-  });
+  // //test   List<RoomDto> getAllRooms();
+  // it('should return an array', () => {
+  //   const locale = service.getAllRooms();
+  //   expect(locale).toBeInstanceOf(Array);
+  // });
 
 
 });
