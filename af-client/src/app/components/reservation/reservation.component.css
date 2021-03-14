@@ -1,8 +1,12 @@
 .reservation {
-    margin: 0 0 2em 0;
+    margin:  0 2%;
     list-style-type: none;
     padding: 0;
-    width: 65em;
+    /* width: 65em; */
+  }
+
+  .reservation .reservation-top {
+    margin: 0 0 0 3%;
   }
   .reservation li {
     position: relative;
@@ -35,6 +39,10 @@
     color: #fafafa;
   }
 
+  .reservation span {
+    /* margin-left: 20px; */
+  }
+
   .reservation .badge {
     display: inline-block;
     font-size: small;
@@ -51,8 +59,9 @@
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
-  .reservation span {
-    margin-left: 20px;
+  
+  #list {
+    margin: 1% 0 0 0;
   }
 
   .reservation select {
@@ -70,4 +79,27 @@
     float: left;
     text-align: left;
     }
+
+  .right-float {
+      float: right;
+    }
+
+  #addForm {
+    margin: 1% 5% 1% 6%;
+    padding: 7px 0;
+  border: 3px solid #405061;
+  background-color: #EEE;
+  
+  }
+  #addForm div {
+    margin: 5px 5px 5px 5px;
+  }
+
+  input {
+    margin: 0 5px;
+  }
+
+  select {
+    margin: 0 5px;
+  }
   

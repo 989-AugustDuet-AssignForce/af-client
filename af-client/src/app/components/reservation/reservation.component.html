@@ -1,17 +1,18 @@
 <p>reservation works!</p>
 <div class="reservation">
-
+<div class="reservation-top">
   <div>
     <button (click)="getAllReservationsByRoomId(roomId)">search by roomId </button>
     <input [(ngModel)]="roomId" placeholder="Room Id" />
-    <button (click)="getAlltrainingStationReservations()">Show Training Station Reservations </button>
+    <button class='right-float' (click)="getAlltrainingStationReservations()">Show Training Station Reservations </button>
   </div>
+  <br>
   <div>
     <button (click)="getAllReservationsByBuildingId(buildingId)">search by buildingId </button>
     <input [(ngModel)]="buildingId" placeholder="Building Id" />
-    <button (click)="getAllMeetingRoomReservations()">Show Meeting Room Reservations </button>
+    <button class='right-float' (click)="getAllMeetingRoomReservations()">Show Meeting Room Reservations </button>
   </div>
-
+</div>
   <!-- novalidate -->
   <div id='addForm'>
     <form #saveForm="ngForm" (ngSubmit)="add(saveForm.value)">
@@ -78,13 +79,13 @@
     </form>
   </div>
 
-  <ul>
+  <ul id = 'list'>
     <li *ngFor="let reservation of reservations">
       <a routerLink="{{reservation.reservationId}}">
         <span class="badge">{{ reservation.reservationId }}</span>
         <span>Room id:{{ reservation.roomId }}</span>
         <span>Room type:{{ reservation.roomType }}</span>
-        <span>Reserver:{{ reservation.reserver }}</span>
+        <!-- <span>Reserver:{{ reservation.reserver }}</span> -->
         <span>Start:{{ reservation.startDate }}</span>
         <span>End:{{ reservation.endDate }}</span>
         <span *ngIf="reservation.batchId">Batch:  {{reservation.batchId}}</span>
