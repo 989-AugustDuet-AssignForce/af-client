@@ -54,9 +54,9 @@ export class ReservationDetailComponent implements OnInit {
   assignBatch(id: number) {
     this.reservationService.assignBatch(this.reservation, id).subscribe(
       (response) => {
-        this.getReservation();
         this.batches = undefined;
         this.batchError = undefined;
+        this.getReservation();
       },
       (error) => {
         this.batchError = error.error;
