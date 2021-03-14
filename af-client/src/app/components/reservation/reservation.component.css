@@ -1,105 +1,99 @@
 .reservation {
-    margin:  0 2%;
-    list-style-type: none;
-    padding: 0;
-    /* width: 65em; */
-  }
+  margin: 0 2%;
+  list-style-type: none;
+  padding: 0;
+  /* width: 65em; */
+}
 
-  .reservation .reservation-top {
-    margin: 0 0 0 3%;
-  }
-  .reservation li {
-    position: relative;
-    cursor: pointer;
-  }
-  
-  .reservation li:hover {
-    left: .1em;
-  }
-  
-  .reservation a {
-    color: #333;
-    text-decoration: none;
-    background-color: #EEE;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
-    border-radius: 4px;
-    display: block;
-    width: 100%;
-  }
-  
-  .reservation a:hover {
-    color: #2c3a41;
-    background-color: #e6e6e6;
-  }
-  
-  .reservation a:active {
-    background-color: #525252;
-    color: #fafafa;
-  }
+.reservation .reservation-top {
+  margin: 0 2% 0 3%;
+}
+.reservation li {
+  position: relative;
+  cursor: pointer;
+}
 
-  .reservation span {
-    /* margin-left: 20px; */
-  }
+.reservation li:hover {
+  left: 0.1em;
+}
 
-  .reservation .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color:#405061;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    min-width: 16px;
-    text-align: right;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-  }
-  
-  #list {
-    margin: 1% 0 0 0;
-  }
+.reservation a {
+  color: #333;
+  text-decoration: none;
+  background-color: #eee;
+  margin: 0.5em;
+  padding: 0.3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+}
 
-  .reservation select {
-    width: 150px;
-  }
+.reservation a:hover {
+  color: #2c3a41;
+  background-color: #e6e6e6;
+}
 
-  /* .reservation #addForm {
+.reservation a:active {
+  background-color: #525252;
+  color: #fafafa;
+}
+
+.reservation .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #405061;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  min-width: 16px;
+  text-align: right;
+  margin-right: 0.8em;
+  border-radius: 4px 0 0 4px;
+}
+
+#list {
+  margin: 1% 2% 0 0;
+}
+
+.reservation select {
+  width: 150px;
+}
+
+/* .reservation #addForm {
     background-color: #cecaca;
   } */
-  label {
-    color: #020202;
-    font-weight: bold;
-    display: block;
-    width: 100px;
-    float: left;
-    text-align: left;
-    }
+label {
+  color: #020202;
+  font-weight: bold;
+  display: block;
+  width: 100px;
+  float: left;
+  text-align: left;
+}
 
-  .right-float {
-      float: right;
-    }
+.right-float {
+  float: right;
+}
 
-  #addForm {
-    margin: 1% 5% 1% 6%;
-    padding: 7px 0;
+#addForm {
+  margin: 1% 80px 1% 80px;
+  padding: 7px 0;
   border: 3px solid #405061;
-  background-color: #EEE;
-  
-  }
-  #addForm div {
-    margin: 5px 5px 5px 5px;
-  }
+  background-color: #eee;
+}
+#addForm div {
+  margin: 5px 5px 5px 5px;
+}
 
-  input {
-    margin: 0 5px;
-  }
+input {
+  margin: 0 5px;
+}
 
-  select {
-    margin: 0 5px;
-  }
-  
+select {
+  margin: 0 5px;
+}
