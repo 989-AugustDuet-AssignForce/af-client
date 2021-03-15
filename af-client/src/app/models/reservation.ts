@@ -20,9 +20,8 @@ export class Reservation {
     reserver: string,
     startDate: string,
     endDate: string,
-    batchId?: number,
-    roomOccupation?: string
-    ) {
+    roomOccupation?: string,
+    batchId?: number ) {
 
     this.reservationId = reservationId;
     this.batchId = batchId;

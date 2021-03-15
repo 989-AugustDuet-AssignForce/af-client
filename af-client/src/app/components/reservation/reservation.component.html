@@ -1,92 +1,120 @@
 <p>reservation works!</p>
 <div class="reservation">
-
-  <div>
-    <button (click)="getAllReservationsByRoomId(roomId)">search by roomId </button>
-    <input  [(ngModel)]="roomId" placeholder="Room Id"/>
-    <button (click)="getAlltrainingStationReservations()">Show Training Station Reservations </button>
+  <div class="reservation-top">
+    <div>
+      <button (click)="getAllReservationsByBuildingId(buildingId)">
+        search by buildingId
+      </button>
+      <input [(ngModel)]="roomId" placeholder="Room Id" />
+      <button class="right-float" (click)="getAlltrainingStationReservations()">
+        Show Training Station Reservations
+      </button>
+    </div>
+    <br />
+    <div>
+      <button (click)="getAllReservationsByRoomId(roomId)">
+        search by roomId
+      </button>
+      <input [(ngModel)]="buildingId" placeholder="Building Id" />
+      <button class="right-float" (click)="getAllMeetingRoomReservations()">
+        Show Meeting Room Reservations
+      </button>
+    </div>
   </div>
-  <div>
-    <button (click)="getAllReservationsByBuildingId(buildingId)">search by buildingId </button>
-    <input  [(ngModel)]="buildingId" placeholder="Building Id"/>
-    <button (click)="getAllMeetingRoomReservations()">Show Meeting Room Reservations </button>
-  </div>
-
   <!-- novalidate -->
-  <div id = 'addForm'>
-    <form #saveForm="ngForm" (ngSubmit)="add(saveForm.value)" > 
-            <h2>Add Reservation</h2>
-            <div>
-              <label for="reservation-LocationId">LocationId: </label>
-              <select name="locationId" id="locationId" ngModel>
-                <option value="">Select LocationId</option>
-                <option *ngFor = "let val of arr" [value]="val">{{val}}</option>
-            </select>
-            </div>
-            <div>
-              <label for="reservation-BuildingId">BuildingId: </label>
-              <select name="buildingId" id="buildingId" ngModel>
-                <option value="">Select BuildingId</option>
-                <option *ngFor = "let val of arr" [value]="val">{{val}}</option>
-            </select>
-            </div>
-            <div>
-              <label for="reservation-RoomId">RoomId: </label>
-              <select name="roomId" id="roomId" ngModel>
-                <option value="">Select RoomId</option>
-                <option *ngFor = "let val of arr" [value]="val">{{val}}</option>
-            </select>
-            </div>
-          <div>
-            <label for="reservation-roomType">RoomType: </label>
-            <select name="roomType" id="roomType" ngModel>
-              <option value="">Select RoomType</option>
-              <option value="0">VIRTUAL</option>
-              <option value="1">PHYSICAL</option>
-              <option value="2">REMOTE</option>
-          </select>
-          </div>
-          <div>
-            <label for="reservation-roomOccupation">Occupation: </label>
-            <select name="roomOccupation" id="roomOccupation" ngModel>
-              <option value="">Select Occupation</option>
-              <option value="0" selected>TRAINING</option>
-              <option value="1">MEETING</option>
-          </select>
-          </div>
+  <div id="addForm">
+    <form #saveForm="ngForm" (ngSubmit)="add(saveForm.value)">
+      <h2>Add Reservation</h2>
+      <div>
+        <label for="reservation-LocationId">LocationId: </label>
+        <select name="locationId" id="locationId" ngModel>
+          <option value="">Select LocationId</option>
+          <option *ngFor="let val of arr" [value]="val">{{ val }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="reservation-BuildingId">BuildingId: </label>
+        <select name="buildingId" id="buildingId" ngModel>
+          <option value="">Select BuildingId</option>
+          <option *ngFor="let val of arr" [value]="val">{{ val }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="reservation-RoomId">RoomId: </label>
+        <select name="roomId" id="roomId" ngModel>
+          <option value="">Select RoomId</option>
+          <option *ngFor="let val of arr" [value]="val">{{ val }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="reservation-roomType">RoomType: </label>
+        <select name="roomType" id="roomType" ngModel>
+          <option value="">Select RoomType</option>
+          <option value="0">VIRTUAL</option>
+          <option value="1">PHYSICAL</option>
+          <option value="2">REMOTE</option>
+        </select>
+      </div>
+      <div>
+        <label for="reservation-roomOccupation">Occupation: </label>
+        <select name="roomOccupation" id="roomOccupation" ngModel>
+          <option value="">Select Occupation</option>
+          <option value="0" selected>TRAINING</option>
+          <option value="1">MEETING</option>
+        </select>
+      </div>
 
-          <div>        
-            <label for="reservation-reserver">Reserver: </label>
-            <input id="reserver" name="reserver" placeholder="reserver" ngModel/>
-          </div>
-          <div>
-            <label for="reservation-startDate">StartDate: </label>
-            <input id="startDate" name="startDate" required placeholder="MM-DD-YYYY HH:MM" ngModel/>
-          </div>
-          <div>
-            <label for="reservation-endDate">EndDate: </label>
-            <input id="endDate" name="endDate" required placeholder="MM-DD-YYYY HH:MM" ngModel/>
-          </div>
-          <div>
-            <label for="reservation-batchId">BatchId: </label>
-            <input id="batchId" name="batchId" placeholder="batchId" ngModel/>
-          </div>
-          <button>Add Reservation</button>
+      <div>
+        <label for="reservation-reserver">Reserver: </label>
+        <input id="reserver" name="reserver" placeholder="reserver" ngModel />
+      </div>
+      <div>
+        <label for="reservation-startDate">StartDate: </label>
+        <input
+          id="startDate"
+          name="startDate"
+          required
+          placeholder="MM-DD-YYYY HH:MM"
+          ngModel
+        />
+      </div>
+      <div>
+        <label for="reservation-endDate">EndDate: </label>
+        <input
+          id="endDate"
+          name="endDate"
+          required
+          placeholder="MM-DD-YYYY HH:MM"
+          ngModel
+        />
+      </div>
+      <div>
+        <label for="reservation-batchId">BatchId: </label>
+        <select id="batchId" name="batchId" placeholder="batchId" ngModel>
+          <option value="">Select Batch (optional)</option>
+          <option *ngFor="let batch of batches" value="{{ batch.id }}">
+            Batch ID: {{ batch.id }} Name: {{ batch.name }} Start Date:
+            {{ batch.startDate }} End Date: {{ batch.endDate }}
+          </option>
+        </select>
+      </div>
+      <button>Add Reservation</button>
     </form>
   </div>
 
-
-  <ul>
-    <li *ngFor="let reservation of reservations">
-      <a routerLink="{{reservation.reservationId}}">
+  <ul id="list">
+    <div *ngFor="let reservation of reservations">
+      <a routerLink="{{ reservation.reservationId }}">
         <span class="badge">{{ reservation.reservationId }}</span>
         <span>Room id:{{ reservation.roomId }}</span>
         <span>Room type:{{ reservation.roomType }}</span>
-        <span>Reserver:{{ reservation.reserver }}</span>
+        <!-- <span>Reserver:{{ reservation.reserver }}</span> -->
         <span>Start:{{ reservation.startDate }}</span>
         <span>End:{{ reservation.endDate }}</span>
-        <span *ngIf="reservation.batchId">Batch:  {{reservation.batchId}}</span>
+        <span *ngIf="reservation.batchId"
+          >Batch: {{ reservation.batchId }}</span
+        >
       </a>
-    </li>
+    </div>
   </ul>
 </div>

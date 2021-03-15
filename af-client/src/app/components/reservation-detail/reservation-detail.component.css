@@ -2,11 +2,22 @@
   color: red;
 }
 
-.detail div{
-  color: #020202;
-  font-weight: bold;
-  display: block;
-  width: 400px;
-  /* float: left; */
-  text-align: left;
+
+
+  #edit-button button {
+    margin: 1%;
+    
+    cursor: pointer;
+  }
+  .detail-form {
+    margin: 1%;
+    padding: 7px 10px;
+    border: 3px solid #405061;
+    background-color: #eee;
+  }
+
+  .detail-form input {
+    margin: 10px 5px;
+    position: relative;
+    padding-block-start: 0px 10px;
   }

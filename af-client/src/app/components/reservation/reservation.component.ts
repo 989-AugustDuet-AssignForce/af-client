@@ -2,6 +2,8 @@ import { Reservation } from '../../models/reservation';
 import { ReservationService } from '../../services/reservation.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { CaliberService } from 'src/app/services/caliber.service';
+import { BacthDTO } from 'src/app/models/batch-dto';
 
 @Component({
   selector: 'app-reservation',
@@ -14,12 +16,14 @@ export class ReservationComponent implements OnInit {
   roomId: number;
   buildingId: number;
   reservations: Reservation[];
-  arr = [1,2,3];
+  arr = [1, 2, 3];
+  batches: BacthDTO[];
 
   constructor(
     private reservationService: ReservationService,
-    private router: Router
-  ) {
+    private router: Router,
+    private caliberService: CaliberService) {
+
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         // Function you want to call here
@@ -29,7 +33,7 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getAllReservations();
+    this.getBatches();
   }
 
   getAllReservations(): void {
@@ -52,11 +56,6 @@ export class ReservationComponent implements OnInit {
 
   add(newReservation: Reservation): void {
     console.log(newReservation);
-    // buildingId = buildingId.trim();
-    // if (!buildingId) {
-    //   return;
-    // }
-    // newReservation.buildingId = buildingId;
     if (newReservation.startDate == '' || newReservation.endDate == '') {
       alert('Please enter the correct time-slot');
     } else {
@@ -114,5 +113,11 @@ export class ReservationComponent implements OnInit {
         console.log('getting reservations by building id');
         this.reservations = reservations;
       });
+  }
+
+  getBatches(): void {
+    this.caliberService.getAllBatches().subscribe((batches) => {
+      this.batches = batches;
+    });
   }
 }

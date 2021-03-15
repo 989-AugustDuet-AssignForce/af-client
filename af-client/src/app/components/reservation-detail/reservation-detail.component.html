@@ -1,50 +1,54 @@
-<p>reservation-detail works!</p>
-<div *ngIf="reservation" >
-<div class = "detail">
-    
-    <h2>Reservation: {{reservation.reservationId}} Details</h2>
-  <div >
-    <label for="reservation-locationId">reservation locationId: </label>
-    <input id="reservation-locationId" [(ngModel)]="reservation.locationId" placeholder="locationId"/>
+
+<div *ngIf="reservation; else noReservation">
+  <div class = "detail-form">
+      <h2>Reservation: {{reservation.reservationId}} Details</h2>
+    <div >
+      <label for="reservation-locationId">reservation locationId: </label>
+      <input id="reservation-locationId" [(ngModel)]="reservation.locationId" placeholder="locationId"/>
+    </div>
+    <div>
+      <label for="reservation-buildingId">reservation buildingId: </label>
+      <input id="reservation-city" [(ngModel)]="reservation.buildingId" placeholder="buildingId"/>
+    </div>
+    <div>
+      <label for="reservation-roomId">reservation roomId: </label>
+      <input id="reservation-roomId" [(ngModel)]="reservation.roomId" placeholder="roomId"/>
+    </div>
+    <div>
+      <label for="reservation-roomType">reservation roomType: </label>
+      <input id="reservation-roomType" [(ngModel)]="reservation.roomType" placeholder="roomType"/>
+    </div>
+    <div>
+      <label for="reservation-roomOccupation">reservation roomOccupation: </label>
+      <input id="reservation-roomOccupation" [(ngModel)]="reservation.roomOccupation" placeholder="roomOccupation"/>
+    </div>
+    <div>
+      <label for="reservation-reserver">reservation reserver: </label>
+      <input id="reservation-reserver" [(ngModel)]="reservation.reserver" placeholder="reserver"/>
+    </div>
+    <div>
+      <label for="reservation-startDate">reservation startDate: </label>
+      <input id="reservation-startDate" [(ngModel)]="reservation.startDate" placeholder="MM-DD-YYYY HH:MM"/>
+    </div>
+    <div>
+      <label for="reservation-endDate">reservation endDate: </label>
+      <input id="reservation-endDate" [(ngModel)]="reservation.endDate" placeholder="MM-DD-YYYY HH:MM"/>
+    </div>
+    <div>
+      <label for="reservation-batchId">reservation batchId: </label>
+      <input id="reservation-batchId" [(ngModel)]="reservation.batchId" placeholder="BatchId" />
+      <button (click)="getBatches()" *ngIf="reservation.batchId == undefined">Add batch from Caliber</button>
+    </div>
   </div>
-  <div>
-    <label for="reservation-buildingId">reservation buildingId: </label>
-    <input id="reservation-city" [(ngModel)]="reservation.buildingId" placeholder="buildingId"/>
-  </div>
-  <div>
-    <label for="reservation-roomId">reservation roomId: </label>
-    <input id="reservation-roomId" [(ngModel)]="reservation.roomId" placeholder="roomId"/>
-  </div>
-  <div>
-    <label for="reservation-roomType">reservation roomType: </label>
-    <input id="reservation-roomType" [(ngModel)]="reservation.roomType" placeholder="roomType"/>
-  </div>
-  <div>
-    <label for="reservation-roomOccupation">reservation roomOccupation: </label>
-    <input id="reservation-roomOccupation" [(ngModel)]="reservation.roomOccupation" placeholder="roomOccupation"/>
-  </div>
-  <div>
-    <label for="reservation-reserver">reservation reserver: </label>
-    <input id="reservation-reserver" [(ngModel)]="reservation.reserver" placeholder="reserver"/>
-  </div>
-  <div>
-    <label for="reservation-startDate">reservation startDate: </label>
-    <input id="reservation-startDate" [(ngModel)]="reservation.startDate" placeholder="MM-DD-YYYY HH:MM"/>
-  </div>
-  <div>
-    <label for="reservation-endDate">reservation endDate: </label>
-    <input id="reservation-endDate" [(ngModel)]="reservation.endDate" placeholder="MM-DD-YYYY HH:MM"/>
-  </div>
-  <div>
-    <label for="reservation-batchId">reservation batchId: </label>
-    <input id="reservation-batchId" [(ngModel)]="reservation.batchId" placeholder="BatchId" />
-    <button (click)="getBatches()" *ngIf="reservation.batchId == undefined">Add batch from Caliber</button>
-  </div>
+ <div id = 'edit-button'>
+  <button routerLink=".." (click)="update()">SAVE</button>
+  <button routerLink=".."(click)="delete()">DELETE</button> 
+ </div>
+  
 </div>
- 
-<button routerLink=".." (click)="update()">SAVE</button>
-<button routerLink=".."(click)="delete()">DELETE</button> 
-</div>
+<ng-template #noReservation>
+  <h1 class="error">No Reservation Selected</h1>
+</ng-template>
 
 <div *ngIf="batchError">
   <h1 class="error">{{batchError}}</h1>
