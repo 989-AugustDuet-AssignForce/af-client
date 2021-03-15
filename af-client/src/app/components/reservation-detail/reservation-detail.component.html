@@ -1,6 +1,6 @@
 
 <div *ngIf="reservation; else noReservation">
-  <div class = "detail">
+  <div class = "detail-form">
       <h2>Reservation: {{reservation.reservationId}} Details</h2>
     <div >
       <label for="reservation-locationId">reservation locationId: </label>
@@ -40,9 +40,11 @@
       <button (click)="getBatches()" *ngIf="reservation.batchId == undefined">Add batch from Caliber</button>
     </div>
   </div>
- 
+ <div id = 'edit-button'>
   <button routerLink=".." (click)="update()">SAVE</button>
   <button routerLink=".."(click)="delete()">DELETE</button> 
+ </div>
+  
 </div>
 <ng-template #noReservation>
   <h1 class="error">No Reservation Selected</h1>
