@@ -38,4 +38,24 @@ export class LocationService {
     return this.http.post<LocationRequestDto>(`${this.apiBase}/locations`, locationRequestDto)
   }
 
+  updateLocation(index:number,locationRequestDto: LocationRequestDto) {
+    return this.http.put<LocationRequestDto>(`${this.apiBase}/locations/${index}`, locationRequestDto)
+  }
+
+  updateLocationZipCode(index: number, zipCode: string) {
+    return this.http.patch<string>(`${this.apiBase}/locations/${index}/updateZipCode`,zipCode);
+  }
+
+  updateLocationCity(index: number, city: string) {
+    return this.http.patch<string>(`${this.apiBase}/locations/${index}/updateCity`, city)
+  }
+
+  updateLocationState(index: number, state: string){
+    return this.http.patch<string>(`${this.apiBase}/locations/${index}/updateState`, state)
+  }
+
+  deleteLocation(index: number){
+    return this.http.delete<string>(`${this.apiBase}/locations/${index}`)
+  }
+
 }
