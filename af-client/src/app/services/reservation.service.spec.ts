@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpResponse } from '@angular/common/http';
 import { Reservation } from '../models/reservation';
 import { environment } from '../../environments/environment';
+import { RoomDto } from 'src/app/models/room-dto';
 
 import { ReservationService } from './reservation.service';
 
@@ -209,22 +210,20 @@ describe('ReservationService', () => {
     request.unsubscribe();
   });
 
-  //test getAllAvailableMeetingRooms;
-  /* TODO add after RoomDTO added
   it('should be a Reservation array getAllAvailableMeetingRooms', () => {
-    const expected: RoomDTO[] = [
-      
+    const expected: RoomDto[] = [
+      { id: 15, type: "PHYSICAL", occupation: "MEETING" }
     ];
-    const startDate: string = "";
-    const endDate: string = "";
+    const startDate: string = "01-17-2021 09:00";
+    const endDate: string = "01-17-2021 09:30";
 
-    let request = service.getAllAvailableMeetingRooms(1, startDate, endDate)
-      .subscribe((response: RoomDTO[]) => {
+    let request = service.getAllAvailableMeetingRooms(2, startDate, endDate)
+      .subscribe((response: RoomDto[]) => {
         expect(response).toEqual(expected);
       });
 
-    const url = environment.reservartionBackendUrl + `1/meetingrooms`;
-
+    const url = environment.reservartionBackendUrl + `2/meetingrooms?startDate=` +
+                  startDate.replace(' ', '%20') + '&endDate=' + endDate.replace(' ', '%20');
     const mockRequest = httpMock.expectOne(url);
 
     expect(mockRequest.cancelled).toBeFalsy();
@@ -232,5 +231,4 @@ describe('ReservationService', () => {
     httpMock.verify();
     request.unsubscribe();
   });
-  */
 });

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { HttpResponse } from '@angular/common/http';
 import {
   HttpClientTestingModule,
@@ -6,11 +7,15 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { POINT_CONVERSION_UNCOMPRESSED } from 'node:constants';
 import { RoomRequestDto } from '../models/room-request-dto';
+=======
+import { TestBed } from '@angular/core/testing';
+>>>>>>> 48ae48796a1218590817b1f10f5f163627acd8f8
 
 import { RoomService } from './room.service';
 
 describe('RoomService', () => {
   let service: RoomService;
+
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -19,6 +24,9 @@ describe('RoomService', () => {
     });
     service = TestBed.inject(RoomService);
     httpMock = TestBed.inject(HttpTestingController);
+
+
+
   });
 
   it('should be created', () => {
@@ -26,6 +34,7 @@ describe('RoomService', () => {
   });
 
   it('should provide an array of all rooms', () => {
+
     const roomsObservable = service.getAllRooms();
     let response;
 
@@ -36,7 +45,8 @@ describe('RoomService', () => {
     expect(response).toBeInstanceOf(Array);
   });
 
-  it('should provide an array of all remote training rooms', () => {
+
+  it('should provide a list of all remote training rooms', () => {
     const trainingRoomsObservable = service.getAllRemoteTrainingRooms();
     let response;
 
@@ -46,7 +56,8 @@ describe('RoomService', () => {
     expect(response).toBeInstanceOf(Array);
   });
 
-  it('should provide an array of all remote meeting rooms', () => {
+
+  it('should provide a list of all remote meeting rooms', () => {
     const meetingRoomsObservable = service.getAllRemoteMeetingRooms();
     let response;
 
@@ -56,7 +67,10 @@ describe('RoomService', () => {
     expect(response).toBeInstanceOf(Array);
   });
 
+
   it('should provide a array of all physical meeting rooms', () => {
+
+
     const physicalMeetingRoomsObservable = service.getAllPhysicalMeetingRooms();
     let response;
 

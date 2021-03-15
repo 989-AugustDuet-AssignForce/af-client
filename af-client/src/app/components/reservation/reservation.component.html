@@ -5,7 +5,7 @@
       <button (click)="getAllReservationsByBuildingId(buildingId)">
         search by buildingId
       </button>
-      <input [(ngModel)]="roomId" placeholder="Room Id" />
+      <input [(ngModel)]="buildingId" placeholder="Building Id" />
       <button class="right-float" (click)="getAlltrainingStationReservations()">
         Show Training Station Reservations
       </button>
@@ -15,7 +15,7 @@
       <button (click)="getAllReservationsByRoomId(roomId)">
         search by roomId
       </button>
-      <input [(ngModel)]="buildingId" placeholder="Building Id" />
+      <input [(ngModel)]="roomId" placeholder="Room Id" />
       <button class="right-float" (click)="getAllMeetingRoomReservations()">
         Show Meeting Room Reservations
       </button>
