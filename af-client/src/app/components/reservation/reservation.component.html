@@ -2,8 +2,8 @@
 <div class="reservation">
   <div class="reservation-top">
     <div>
-      <button (click)="getAllReservationsByRoomId(roomId)">
-        search by roomId
+      <button (click)="getAllReservationsByBuildingId(buildingId)">
+        search by buildingId
       </button>
       <input [(ngModel)]="roomId" placeholder="Room Id" />
       <button class="right-float" (click)="getAlltrainingStationReservations()">
@@ -12,8 +12,8 @@
     </div>
     <br />
     <div>
-      <button (click)="getAllReservationsByBuildingId(buildingId)">
-        search by buildingId
+      <button (click)="getAllReservationsByRoomId(roomId)">
+        search by roomId
       </button>
       <input [(ngModel)]="buildingId" placeholder="Building Id" />
       <button class="right-float" (click)="getAllMeetingRoomReservations()">
@@ -103,7 +103,7 @@
   </div>
 
   <ul id="list">
-    <li *ngFor="let reservation of reservations">
+    <div *ngFor="let reservation of reservations">
       <a routerLink="{{ reservation.reservationId }}">
         <span class="badge">{{ reservation.reservationId }}</span>
         <span>Room id:{{ reservation.roomId }}</span>
@@ -115,6 +115,6 @@
           >Batch: {{ reservation.batchId }}</span
         >
       </a>
-    </li>
+    </div>
   </ul>
 </div>
