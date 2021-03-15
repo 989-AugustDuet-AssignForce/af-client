@@ -28,7 +28,7 @@ describe('LocationService', () => {
   //   const locale = service.getLocationData();
   //   expect(locale).toBeInstanceOf(Array);
   // });
-
+  /*
   //test	public List<LocationDto> getAllLocations()
   it('should return an array', () => {
     const locale = service.getAllLocations();
@@ -143,11 +143,11 @@ describe('LocationService', () => {
   //   expect(locale).toBeInstanceOf(Array);
   // });
 
-  // //test   List<RoomDto> getAllRooms();
-  // it('should return an array', () => {
-  //   const locale = service.getAllRooms();
-  //   expect(locale).toBeInstanceOf(Array);
-  // });
-
+  //test   List<RoomDto> getAllRooms();
+  it('should return an array', () => {
+    const locale = service.getAllRooms();
+    expect(locale).toBeInstanceOf(Array);
+  });
+  */
 
 });

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: af-client
+  labels:
+    app: assignforce
+    service: client
+spec:
+  selector:
+    matchLabels:
+      service: client
+  template:
+    metadata:
+      labels:
+        service: client
+    spec:
+      containers:
+        - name: af-client
+          image: 855430746673.dkr.ecr.us-east-1.amazonaws.com/af-client:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: client-http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1G"
+          readinessProbe:
+            httpGet:
+              port: 80
+              path: /
+            successThreshold: 3
+            failureThreshold: 2
+            periodSeconds: 10
+            timeoutSeconds: 2
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /
+            failureThreshold: 2
+            periodSeconds: 30
+            timeoutSeconds: 2

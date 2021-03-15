@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   caliberUrl: "https://caliber2-mock.revaturelabs.com:443/mock/training/",
-  locationBackendUrl: "http://localhost:8080/api",
-  reservartionBackendUrl: "http://localhost:8080/"
+  locationBackendUrl: "http://localhost:8080/location/api",
+  reservartionBackendUrl: "http://localhost:8080/api/"
 };
 
 /*

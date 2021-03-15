@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { LocationComponent } from './components/location/location.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { BuildingComponent } from './components/building/building.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { RoomComponent } from './components/room/room.component';
+import { ReservationDetailComponent } from './components/reservation-detail/reservation-detail.component';
+
 import { LocationService } from './services/location.service';
 import { ReservationService } from './services/reservation.service';
-import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from './components/navbar/navbar.component';
-
+import { CaliberService } from './services/caliber.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ReservationComponent,
     BuildingComponent,
     RoomComponent,
-    NavbarComponent
+    NavbarComponent,
+    ReservationDetailComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   
   providers: [
     LocationService,
-    ReservationService
+    ReservationService,
+    CaliberService
   ],
 
   bootstrap: [AppComponent]
