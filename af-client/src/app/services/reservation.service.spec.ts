@@ -130,7 +130,6 @@ describe('ReservationService', () => {
     request.unsubscribe();
   });
 
-  /* FIXME: status is null
   //test  void deleteReservation(Integer reservationId);
   it('should be void deleteReservation 1', () => {
 
@@ -143,11 +142,11 @@ describe('ReservationService', () => {
     const mockRequest = httpMock.expectOne(url);
 
     expect(mockRequest.cancelled).toBeFalsy();
-    mockRequest.flush(null);
+    let response: HttpResponse<string> = new HttpResponse({ body: '', status: 200, statusText: 'ok', url: url });
+    mockRequest.flush(response);
     httpMock.verify();
     request.unsubscribe();
   });
-  */
 
   //test  void assignBatch(Reservation reservation, Integer batchId);
   it('Test Assign batch to reservation', async () => {
