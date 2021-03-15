@@ -29,6 +29,13 @@ export class LocationComponent implements OnInit {
       });
   }
 
+  deleteLocation(index: number): any {
+    this.locationService.deleteLocation(index).subscribe((data: {}) => {
+      alert('Location deleted!');
+      this.router.navigate([''])
+    });
+  }
+
   backButton(): void {
     this.router.navigateByUrl('');
   }
@@ -80,12 +87,12 @@ export class LocationComponent implements OnInit {
             let deletebutton = document.createElement('button');
             h3.innerText = 'Location Search Results: ';
             ptag1.innerText = 'ID: ' + value.id;
-            ptag2.innerText =
-              value.city + ' ' + value.state + ' ' + value.zipCode;
+            ptag2.innerText = value.city + ' ' + value.state + ' ' + value.zipCode;
             ptag3.innerText = 'Buildings: ' + value.numBuildings;
             updatebutton.append('Update');
             updatebutton.style.marginRight = '10px';
             deletebutton.append('Delete');
+            // deletebutton.onclick(this.deleteLocation(value.id));
             searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
             searchedDiv.appendChild(ptag2);
@@ -125,6 +132,7 @@ export class LocationComponent implements OnInit {
             updatebutton.append('Update');
             updatebutton.style.marginRight = '10px';
             deletebutton.append('Delete');
+            // deletebutton.onclick(this.deleteLocation(value.id));
             searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
             searchedDiv.appendChild(ptag2);
@@ -164,6 +172,7 @@ export class LocationComponent implements OnInit {
             updatebutton.append('Update');
             updatebutton.style.marginRight = '10px';
             deletebutton.append('Delete');
+            // deletebutton.onclick(this.deleteLocation(value.id));
             searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
             searchedDiv.appendChild(ptag2);
@@ -185,7 +194,6 @@ export class LocationComponent implements OnInit {
           if (document.getElementById('search-div')) {
             document.getElementById('search-div').remove();
           }
-
           let searchedDiv = document.createElement('div');
           searchedDiv.id = 'search-div';
           let h3 = document.createElement('h3');
@@ -206,6 +214,7 @@ export class LocationComponent implements OnInit {
           updatebutton.append('Update');
           updatebutton.style.marginRight = '10px';
           deletebutton.append('Delete');
+          // deletebutton.onclick(this.deleteLocation(searchResults.id));
           let buildingdiv = document.createElement('div');
 
           searchResults.buildings.forEach(function (value) {
@@ -264,6 +273,12 @@ export class LocationComponent implements OnInit {
     }
     
   }
+
+  // updateLocation(): any {
+  //   let updateDiv = document.createElement('div');
+
+  // }
+
 
 }
 
