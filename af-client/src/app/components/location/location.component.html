@@ -60,12 +60,21 @@
 
     <br>
     <div id="search-results-div"></div>
-    <div id = "updateLocation-div"></div>
+    <br>
+    <div id="updateLocation-div">
+        <!-- <span>City: </span>
+        <input type="text" value={{this.locationDto.city}}>
+        <br><br>
+        <span>State: </span>
+        <input type="text" value={{this.locationDto.state}}>
+        <br><br>
+        <span>Zip Code: </span>
+        <input type="text" value={{this.locationDto.zipCode}}> -->
+    </div>
     <br>
 
     <hr>
     <h3>All Locations:</h3> 
-    <br>
     <br>
     <div 
         *ngFor="let location of pulledLocations"
