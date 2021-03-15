@@ -1,5 +1,7 @@
+import { BuildingDto } from './../models/building-dto';
+import { environment } from './../../environments/environment.prod';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { LocationService } from './location.service';
 import { LocationDto } from '../models/location-dto';
@@ -7,6 +9,10 @@ import { LocationDetailsDto } from '../models/location-details-dto';
 
 describe('LocationService', () => {
   let service: LocationService;
+  let buildings: BuildingDto[];
+  let locations: LocationDto[];
+  let location: LocationDetailsDto;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,6 +21,105 @@ describe('LocationService', () => {
       ]
     });
     service = TestBed.inject(LocationService);
+    httpMock = TestBed.inject(HttpTestingController);
+
+    buildings = [
+      new BuildingDto( 1, '11730 Plaza America Dr.', 6, 10 )
+    ]
+    locations = [
+      new LocationDto( 1, 'Reston', 'VA', '20190', 1 ),
+      new LocationDto( 2, 'Tampa', 'FL', '33620', 2 ),
+      // new LocationDto( 3, 'Arlington', 'TX', '76019', 1 )
+      new LocationDto( 3, 'Reston', 'TX', '20190', 1 )
+    ];
+    location = new LocationDetailsDto( 1, 'Reston', 'VA', '20190', buildings )
+  });
+
+  it('should instantiate service', () => {
+    expect(service).toBeTruthy();
+  })
+
+  it('should be an array of all locations', () => {
+    let req = service.getAllLocations()
+      .subscribe((r: LocationDto[]) => {
+        expect(r).toEqual(locations);
+      });
+
+    const url = environment.locationBackendUrl;
+    const mockReq = httpMock.expectOne(url);
+
+    expect(mockReq.cancelled).toBeFalsy();
+    mockReq.flush(locations);
+    httpMock.verify();
+    req.unsubscribe();
+  });
+
+  it('should be an array of all locations by a given city', () => {
+    const restonLocation:LocationDto[] = [locations[0]];
+
+    let req = service.getLocationsByCity('reston')
+      .subscribe((r: LocationDto[]) => {
+        expect(r).toEqual(restonLocation);
+      });
+
+    const url = environment.locationBackendUrl + '/locations/city/reston';
+    const mockReq = httpMock.expectOne(url);
+
+    expect(mockReq.cancelled).toBeFalsy();
+    mockReq.flush(locations);
+    httpMock.verify();
+    req.unsubscribe();
+  });
+
+  it('should be an array of all locations by a given state', () => {
+    const vaLocation:LocationDto[] = [locations[0]];
+
+    let req = service.getLocationsByState('VA')
+      .subscribe((r: LocationDto[]) => {
+        expect(r).toEqual(vaLocation);
+      });
+
+    const url = environment.locationBackendUrl + '/locations/state/va';
+    const mockReq = httpMock.expectOne(url);
+
+    expect(mockReq.cancelled).toBeFalsy();
+    mockReq.flush(locations);
+    httpMock.verify();
+    req.unsubscribe();
+  });
+
+  it('should be an array of all locations by a given zip code', () => {
+    const vaLocation:LocationDto[] = [locations[0]];
+
+    let req = service.getLocationsByZipCode('20190')
+      .subscribe((r: LocationDto[]) => {
+        expect(r).toEqual(vaLocation);
+      });
+
+    const url = environment.locationBackendUrl + '/locations/zip/20190';
+    const mockReq = httpMock.expectOne(url);
+
+    expect(mockReq.cancelled).toBeFalsy();
+    mockReq.flush(locations);
+    httpMock.verify();
+    req.unsubscribe();
+  });
+
+  it('should be a location details dto by a given ID', () => {
+    const loc:LocationDetailsDto = location;
+
+    let req = service.getLocationById(1)
+      .subscribe((r: LocationDetailsDto) => {
+        expect(r).toEqual(loc);
+      });
+
+    const url = environment.locationBackendUrl + '/locations/id/1';
+    const mockReq = httpMock.expectOne(url);
+
+    expect(mockReq.cancelled).toBeFalsy();
+    mockReq.flush(locations);
+    httpMock.verify();
+    req.unsubscribe();
   });
 
   /**************************************************************************************
