@@ -74,4 +74,15 @@ export class ReservationService {
       params: requestBody
     });
   }
+  getAllAvailableTrainingStations(buildingId: number, startDate: string, endDate: string) {
+    const url = environment.reservartionBackendUrl + `${buildingId}/trainingstations`;
+    const requestBody = {
+      startDate: startDate,
+      endDate: endDate
+    };
+
+    return this.httpClient.get<RoomDto[]>(url, {
+      params: requestBody
+    });
+  }
 }

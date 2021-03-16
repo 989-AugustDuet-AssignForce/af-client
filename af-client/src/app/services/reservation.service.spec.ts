@@ -231,4 +231,26 @@ describe('ReservationService', () => {
     httpMock.verify();
     request.unsubscribe();
   });
+
+  it('should be a Room array getAllAvailableTrainingStations', () => {
+    const expected: RoomDto[] = [
+      { id: 3, type: "PHYSICAL", occupation: "TRAINING" }
+    ];
+    const startDate: string = "01-18-2021 09:00";
+    const endDate: string = "01-18-2021 09:30";
+
+    let request = service.getAllAvailableTrainingStations(1, startDate, endDate)
+      .subscribe((response: RoomDto[]) => {
+        expect(response).toEqual(expected);
+      });
+
+    const url = environment.reservartionBackendUrl + `1/trainingstations?startDate=` +
+      startDate.replace(' ', '%20') + '&endDate=' + endDate.replace(' ', '%20');
+    const mockRequest = httpMock.expectOne(url);
+
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(expected);
+    httpMock.verify();
+    request.unsubscribe();
+  });
 });

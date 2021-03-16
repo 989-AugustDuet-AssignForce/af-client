@@ -39,4 +39,27 @@ export class RoomComponent implements OnInit {
         });
     }
   }
+  viewAvailableTrainingStations(data): void {
+    if (data.startDate == '' || data.endDate == '' || data.buildingId == '') {
+      alert('Please enter BuildingId , Start-time and End-time');
+    } else {
+      this.reservationService
+        .getAllAvailableTrainingStations(
+          data.buildingId,
+          data.startDate,
+          data.endDate
+        )
+        .subscribe((returnStations: RoomDto[]) => {
+          console.log(returnStations);
+          if (returnStations && returnStations.length > 0) {
+            console.log('getting stations');
+            this.available = true;
+            this.rooms = returnStations;
+          } else {
+            this.available = false;
+            alert('Training Stations not available at this time!');
+          }
+        });
+    }
+  }
 }
