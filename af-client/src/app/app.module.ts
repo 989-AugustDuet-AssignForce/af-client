@@ -15,6 +15,7 @@ import { ReservationDetailComponent } from './components/reservation-detail/rese
 import { LocationService } from './services/location.service';
 import { ReservationService } from './services/reservation.service';
 import { CaliberService } from './services/caliber.service';
+import { RoomDetailsComponent } from './components/room-details/room-details.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CaliberService } from './services/caliber.service';
     RoomComponent,
     NavbarComponent,
     ReservationDetailComponent,
+    RoomDetailsComponent,
   ],
   imports: [
     BrowserModule,
