@@ -1,1 +1,49 @@
-<p>building works!</p>
+<div class = "container">
+  <div class="dropDown">
+    <label> Modification menu:
+      <select id="menu" name ="menu" [(ngModel)] = "menuSelectValue"  (ngModelChange)="menuSelect($event)">
+        <option value=0> Add Building</option>
+        <option value=1> Remove Building</option>
+        <option value=2> Change City</option>
+        <option value=3> Change Number of Floors</option>
+        <option value=4> Change all fields</option>
+      </select>
+    </label>
+
+    <div class="form">
+      <form [hidden] = "menuSelectValue != 0" [formGroup] ="addBuildingForm">
+        <p><label> City: <input type="text" formControlName ="city"></label></p>
+        <p><label> Street Address: <input type="text" formControlName = "streetAddress"></label></p>
+        <p><label> Zip Code: <input type="text" formControlName = "zipCode"></label></p>
+        <p><label> Total Floors: <input type="number" formControlName="totalFloors"></label></p>
+        <p><label> Location Id: <input type="number" formControlName="locationNumber"></label></p>
+        <button (click)="submitAddBuilding()">Add Building</button>
+      </form>
+      <form [hidden] = "menuSelectValue != 1" [formGroup] ="removeBuildingForm">
+        <p><label> Building Id: <input type="number" formControlName="buildingNumber"></label></p>
+        <p><label> Location Id: <input type="number" formControlName="locationNumber"></label></p>
+        <button (click) = "submitDeleteBuilding()">Delete Building</button>
+      </form>
+      <form [hidden] = "menuSelectValue != 2" [formGroup] ="changeCityForm">
+        <p><label> Building Id: <input type="number" formControlName ="buildingNumber"></label></p>
+        <p><label> City Name: <input type="text" formControlName ="cityName"></label></p>
+        <button (click) = "submitChangeCityName()">Change City Name</button>
+      </form>
+      <form [hidden] = "menuSelectValue != 3" [formGroup]="changeNumberOfFloors">
+        <p><label> Building Id: <input type="number" formControlName="buildingNumber"></label></p>
+        <p><label> Number of Floors: <input type="number" formControlName="totalFloors"></label></p>
+        <button (click) = "submitFloorChange()">Change Floor Count</button>
+      </form>
+      <form [hidden] = "menuSelectValue != 4" [formGroup] = "changeAllFields">
+        <p><label> Building Id: <input type="number" formControlName="buildingNumber"></label></p>
+        <p><label>City: <input type="text" formControlName = "city"></label></p>
+        <p><label> Street Address: <input type="text" formControlName = "streetAddress"></label></p>
+        <p><label> Zip Code: <input type="text" formControlName = "zipCode"></label></p>
+        <p><label> Total Floors: <input type="number" formControlName="totalFloors"></label></p>
+        <button (click)="editBuildingAll()">Edit Building</button>
+      </form>
+      <div [hidden] = "hideUpdateSuccess">System Update Success</div>
+      <div [hidden] = "hideSystemError">System Update Failed, Try Again </div>
+    </div>
+  </div>
+</div>

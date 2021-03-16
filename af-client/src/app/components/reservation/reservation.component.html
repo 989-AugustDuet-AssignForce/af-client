@@ -1,11 +1,10 @@
-<p>reservation works!</p>
 <div class="reservation">
   <div class="reservation-top">
     <div>
       <button (click)="getAllReservationsByBuildingId(buildingId)">
         search by buildingId
       </button>
-      <input [(ngModel)]="roomId" placeholder="Room Id" />
+      <input [(ngModel)]="buildingId" placeholder="Building Id" />
       <button class="right-float" (click)="getAlltrainingStationReservations()">
         Show Training Station Reservations
       </button>
@@ -15,7 +14,7 @@
       <button (click)="getAllReservationsByRoomId(roomId)">
         search by roomId
       </button>
-      <input [(ngModel)]="buildingId" placeholder="Building Id" />
+      <input [(ngModel)]="roomId" placeholder="Room Id" />
       <button class="right-float" (click)="getAllMeetingRoomReservations()">
         Show Meeting Room Reservations
       </button>
@@ -111,9 +110,7 @@
         <!-- <span>Reserver:{{ reservation.reserver }}</span> -->
         <span>Start:{{ reservation.startDate }}</span>
         <span>End:{{ reservation.endDate }}</span>
-        <span *ngIf="reservation.batchId"
-          >Batch: {{ reservation.batchId }}</span
-        >
+        <span *ngIf="reservation.batchId">Batch: {{ reservation.batchId }}</span>
       </a>
     </div>
   </ul>

@@ -1,1 +1,32 @@
-<p>room works!</p>
+<div class="room">
+    <form #roomsForm="ngForm" (ngSubmit)="viewAvaialableMeetingRooms(roomsForm.value)"> 
+        <h2>View Available Meeting Rooms</h2>
+        <div>
+            <label for="BuildingId">BuildingId: </label>
+            <select name="buildingId" id="buildingId" ngModel>
+              <option value="">Select BuildingId</option>
+              <option *ngFor = "let ids of arrBuildingIds" [value]="ids">{{ids}}</option>
+          </select>
+        </div>
+        <div>
+            <label for="reservation-startDate">StartDate: </label>
+            <input id="startDate" name="startDate" required placeholder="MM-DD-YYYY HH:MM" ngModel/>
+          </div>
+          <div>
+            <label for="reservation-endDate">EndDate: </label>
+            <input id="endDate" name="endDate" required placeholder="MM-DD-YYYY HH:MM" ngModel/>
+          </div>
+          <button>View Available Meeting Rooms</button>
+    </form>
+    
+        <ul *ngIf= "available">
+            <li *ngFor="let room of rooms">
+            <a routerLink="{{ room.id }}">
+                <span class="badge">{{ room.id }}</span>
+                <span>Room Type:{{ room.type }}</span>
+                <span>Room Occupation:{{ room.occupation }}</span>            
+            </a>
+            </li>
+        </ul>
+    
+</div>

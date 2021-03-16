@@ -1,0 +1,13 @@
+<div *ngIf="details" class="details-frame">
+  <button routerLink="..">Back to list</button>
+  <p>Name: {{ details.name }}</p>
+  <p>Type: {{ details.type }}</p>
+  <p>Occupation: {{ details.occupation }}</p>
+  <p>Capacity: {{ details.capacity }}</p>
+  <p>Floor Number: {{ details.floorNumber }}</p>
+
+  <h5>Amenities</h5>
+  <ul>
+    <li *ngFor="let amenity of this.details.amenities">{{ amenity }}</li>
+  </ul>
+</div>
