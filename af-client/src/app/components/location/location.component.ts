@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { LocationRequestDto } from 'src/app/models/location-request-dto';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 @Component({
   selector: 'app-location',
@@ -16,7 +17,7 @@ export class LocationComponent implements OnInit {
   pulledLocations: LocationDto[];
   locationDto: LocationDto;
   locationDetailsDto: LocationDetailsDto;
-
+  index: number;
   constructor(
     private locationService: LocationService,
     private router: Router
@@ -30,13 +31,6 @@ export class LocationComponent implements OnInit {
       .subscribe((locations: LocationDto[]) => {
         this.pulledLocations = locations;
       });
-  }
-
-  deleteLocation(index: number): any {
-    this.locationService.deleteLocation(index).subscribe((data: {}) => {
-      alert('Location deleted!');
-      this.router.navigate([''])
-    });
   }
 
   backButton(): void {
@@ -70,34 +64,40 @@ export class LocationComponent implements OnInit {
     })
   }
 
-  updateLocation(): any {
-    let updateForm = document.createElement('form');
-    let cityspan = document.createElement('span');
-    let cityinput = document.createElement('input');
-    let statespan = document.createElement('span');
-    let stateinput = document.createElement('input');
-    let zipspan = document.createElement('span');
-    let zipinput = document.createElement('input');
-    let submitupdatebutton = document.createElement('button');
-    cityspan.append('City: ');
-    cityinput.setAttribute('type','text');
-    cityinput.setAttribute('value',this.locationDto.city);
-    statespan.append('State: ');
-    stateinput.setAttribute('type','text');
-    stateinput.setAttribute('value',this.locationDto.state);
-    zipspan.append('Zip Code: ');
-    zipinput.setAttribute('type','text');
-    zipinput.setAttribute('value',this.locationDto.zipCode);
-    submitupdatebutton.append('Submit');
-    submitupdatebutton.setAttribute('type','submit');
-    updateForm.appendChild(cityspan);
-    updateForm.appendChild(cityinput);
-    updateForm.appendChild(statespan);
-    updateForm.appendChild(stateinput);
-    updateForm.appendChild(zipspan);
-    updateForm.appendChild(zipinput);
-    updateForm.appendChild(submitupdatebutton);
-    document.getElementById('updateLocation-div').appendChild(updateForm);
+
+  updateLocation(index: number, locationRequestDto: LocationRequestDto) {
+    this.locationService.updateLocation(index, locationRequestDto).subscribe((data: {}) => {
+      alert('Location updated!');
+      location.reload();
+    })
+  }
+
+  updateStateLocation(index: number, state: string) {
+    this.locationService.updateLocationState(index,state).subscribe((data: {}) => {
+      alert("Location's state updated!");
+      location.reload();
+    })
+  }
+
+  updateCityLocation(index: number, city: string) {
+    this.locationService.updateLocationCity(index,city).subscribe((data: {}) => {
+      alert("Location's city updated!");
+      location.reload();
+    })
+  }
+
+  updateZipCodeLocation(index: number, zipCode: string){
+    this.locationService.updateLocationZipCode(index,zipCode).subscribe((data: {}) => {
+      alert("Location's zip code updated!");
+      location.reload();
+    })
+  }
+
+  deleteLocation (index : number) {
+    this.locationService.deleteLocation(index).subscribe((data: {}) => {
+      alert("Location has been deleted!");
+      location.reload();
+    })
   }
 
   displayCityLocations(city): void {
@@ -105,86 +105,25 @@ export class LocationComponent implements OnInit {
       .getLocationsByCity(city)
       .subscribe((searchResults: LocationDto[]) => {
         this.locationDto = searchResults[0];
+        if (document.getElementById('search-div')) {
+          document.getElementById('search-div').remove();
+        }
+        let h3 = document.createElement('h3');
+        h3.innerText = 'Location Search Results: ';
+        document.getElementById('search-results-div').appendChild(h3);
         searchResults.forEach(function (value) {
           if (value.city) {
-            if (document.getElementById('search-div')) {
-              document.getElementById('search-div').remove();
-            }
-
             let searchedDiv = document.createElement('div');
             searchedDiv.id = 'search-div';
-            let h3 = document.createElement('h3');
             let ptag1 = document.createElement('p');
             let ptag2 = document.createElement('p');
             let ptag3 = document.createElement('p');
-            let updatebutton = document.createElement('button');
-            let deletebutton = document.createElement('button');
-            h3.innerText = 'Location Search Results: ';
             ptag1.innerText = 'ID: ' + value.id;
             ptag2.innerText = value.city + ' ' + value.state + ' ' + value.zipCode;
             ptag3.innerText = 'Buildings: ' + value.numBuildings;
-            updatebutton.append('Update');
-            updatebutton.style.marginRight = '10px';
-            deletebutton.append('Delete');
-
-            let submitupdatebutton = document.createElement('button');
-            let updatedObj: LocationDto = new LocationDto(0, '', '', '');
-            function showObject(): any {
-              updatedObj.id = value.id;
-              updatedObj.city = cityinput.value;
-              updatedObj.state = stateinput.value;
-              updatedObj.zipCode = zipinput.value;
-              console.log('uobj id: '+updatedObj.id);
-              console.log('uobj city: '+updatedObj.city);
-              console.log('uobj state: '+updatedObj.state);
-              console.log('uobj zipcode: '+updatedObj.zipCode);
-          }
-
-            // deletebutton.onclick(this.deleteLocation(value.id));
-            let cityinput = document.createElement('input');
-            let stateinput = document.createElement('input');
-            let zipinput = document.createElement('input');
-            function updateLocationButton(): any {
-              let updateForm = document.createElement('div');
-              let cityspan = document.createElement('span');
-              let statespan = document.createElement('span');
-              let zipspan = document.createElement('span');
-              cityspan.append('City: ');
-              cityinput.setAttribute('type','text');
-              cityinput.setAttribute('value',value.city);
-              statespan.append('State: ');
-              stateinput.setAttribute('type','text');
-              stateinput.setAttribute('value',value.state);
-              zipspan.append('Zip Code: ');
-              zipinput.setAttribute('type','text');
-              zipinput.setAttribute('value',value.zipCode);
-              submitupdatebutton.append('Submit');
-
-              updateForm.appendChild(cityspan);
-              updateForm.appendChild(cityinput);
-              updateForm.appendChild(document.createElement('br'));
-              updateForm.appendChild(statespan);
-              updateForm.appendChild(stateinput);
-              updateForm.appendChild(document.createElement('br'));
-              updateForm.appendChild(zipspan);
-              updateForm.appendChild(zipinput);
-              updateForm.appendChild(document.createElement('br'));
-              updateForm.appendChild(submitupdatebutton);
-              searchedDiv.appendChild(document.createElement('br'));
-              searchedDiv.appendChild(document.createElement('br'));
-              searchedDiv.appendChild(updateForm);
-              updatebutton.disabled = true;
-            }
-            updatebutton.addEventListener('click', updateLocationButton);
-            submitupdatebutton.addEventListener('click', showObject);
-
-            searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
             searchedDiv.appendChild(ptag2);
             searchedDiv.appendChild(ptag3);
-            searchedDiv.appendChild(updatebutton);
-            searchedDiv.appendChild(deletebutton);
-
             document.getElementById('search-results-div').appendChild(searchedDiv);
           }
         });
@@ -202,33 +141,21 @@ export class LocationComponent implements OnInit {
         let h3 = document.createElement('h3');
         h3.innerText = 'Location Search Results: ';
         document.getElementById('search-results-div').appendChild(h3);
-
         searchResults.forEach(function (value) {
           console.log('size: '+searchResults.length);
           if (value.state) {
-
             let searchedDiv = document.createElement('div');
             searchedDiv.id = 'search-div';
             let ptag1 = document.createElement('p');
             let ptag2 = document.createElement('p');
             let ptag3 = document.createElement('p');
-            let updatebutton = document.createElement('button');
-            let deletebutton = document.createElement('button');
             ptag1.innerText = 'ID: ' + value.id;
             ptag2.innerText =
               value.city + ' ' + value.state + ' ' + value.zipCode;
             ptag3.innerText = 'Buildings: ' + value.numBuildings;
-            updatebutton.append('Update');
-            updatebutton.style.marginRight = '10px';
-            deletebutton.append('Delete');
-            // deletebutton.onclick(this.deleteLocation(value.id));
-            // searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
             searchedDiv.appendChild(ptag2);
             searchedDiv.appendChild(ptag3);
-            searchedDiv.appendChild(updatebutton);
-            searchedDiv.appendChild(deletebutton);
-            
             document.getElementById('search-results-div').appendChild(searchedDiv);
           }
         });
@@ -240,21 +167,24 @@ export class LocationComponent implements OnInit {
       .getLocationsByZipCode(zipCode)
       .subscribe((searchResults: LocationDto[]) => {
         this.locationDto = searchResults[0];
+        if (document.getElementById('search-div')) {
+          document.getElementById('search-div').remove();
+        }
+        let h3 = document.createElement('h3');
+        h3.innerText = 'Location Search Results: ';
+        document.getElementById('search-results-div').appendChild(h3);
         searchResults.forEach(function (value) {
           if (value.zipCode) {
             if (document.getElementById('search-div')) {
               document.getElementById('search-div').remove();
             }
-
             let searchedDiv = document.createElement('div');
             searchedDiv.id = 'search-div';
-            let h3 = document.createElement('h3');
             let ptag1 = document.createElement('p');
             let ptag2 = document.createElement('p');
             let ptag3 = document.createElement('p');
             let updatebutton = document.createElement('button');
             let deletebutton = document.createElement('button');
-            h3.innerText = 'Location Search Results: ';
             ptag1.innerText = 'ID: ' + value.id;
             ptag2.innerText =
               value.city + ' ' + value.state + ' ' + value.zipCode;
@@ -262,8 +192,6 @@ export class LocationComponent implements OnInit {
             updatebutton.append('Update');
             updatebutton.style.marginRight = '10px';
             deletebutton.append('Delete');
-            // deletebutton.onclick(this.deleteLocation(value.id));
-            searchedDiv.appendChild(h3);
             searchedDiv.appendChild(ptag1);
             searchedDiv.appendChild(ptag2);
             searchedDiv.appendChild(ptag3);
@@ -305,9 +233,7 @@ export class LocationComponent implements OnInit {
           updatebutton.append('Update');
           updatebutton.style.marginRight = '10px';
           deletebutton.append('Delete');
-          // deletebutton.onclick(this.deleteLocation(searchResults.id));
           let buildingdiv = document.createElement('div');
-
           searchResults.buildings.forEach(function (value) {
             let buildingtag1 = document.createElement('p');
             let buildingtag2 = document.createElement('p');

@@ -6,12 +6,14 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { LocationService } from './location.service';
 import { LocationDto } from '../models/location-dto';
 import { LocationDetailsDto } from '../models/location-details-dto';
+import { LocationRequestDto } from '../models/location-request-dto';
 
 describe('LocationService', () => {
   let service: LocationService;
   let buildings: BuildingDto[];
   let locations: LocationDto[];
   let location: LocationDetailsDto;
+  let locationRequest: LocationRequestDto;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -33,6 +35,7 @@ describe('LocationService', () => {
       new LocationDto( 3, 'Reston', 'TX', '20190', 1 )
     ];
     location = new LocationDetailsDto( 1, 'Reston', 'VA', '20190', buildings )
+    locationRequest = new LocationRequestDto('Orlando', 'FL', '23405')
   });
 
   it('should instantiate service', () => {
@@ -121,6 +124,86 @@ describe('LocationService', () => {
     httpMock.verify();
     req.unsubscribe();
   });
+ 
+  it('should create a Location based on the LocationRequestDto provided', () => {
+    let req = service.createLocation(locationRequest).subscribe((response: LocationRequestDto) =>{
+      expect(response).toEqual(locationRequest);
+      const url = environment.locationBackendUrl + '/locations/id/4';
+      const mockRequest = httpMock.expectOne(url);
+      expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(locationRequest);
+    httpMock.verify();
+    req.unsubscribe();
+    })
+  });
+
+  it('should update an existing Location based on the LocationRequestDto provided', () => {
+    let request = service.updateLocation(location.id,locationRequest)
+      .subscribe((response: LocationRequestDto) => {
+        expect(response).toEqual(locationRequest);
+      });
+    const url = environment.locationBackendUrl + "/locations/id/1";
+    const mockRequest = httpMock.expectOne(url);
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(locationRequest);
+    httpMock.verify();
+    request.unsubscribe();
+  });
+
+  it('should update an existing Location based on the State provided', () => {
+    let request = service.updateLocationState(location.id,locationRequest.state)
+      .subscribe((response: any) => {
+        expect(response).toEqual(locationRequest.state);
+      });
+    const url = environment.locationBackendUrl + "/locations/state/" + locationRequest.state;
+    const mockRequest = httpMock.expectOne(url);
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(locationRequest);
+    httpMock.verify();
+    request.unsubscribe();
+  });
+
+  it('should update an existing Location based on the City provided', () => {
+    let request = service.updateLocationCity(location.id,locationRequest.city)
+      .subscribe((response: any) => {
+        expect(response).toEqual(locationRequest.city);
+      });
+    const url = environment.locationBackendUrl + "/locations/city/" + locationRequest.city;
+    const mockRequest = httpMock.expectOne(url);
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(locationRequest);
+    httpMock.verify();
+    request.unsubscribe();
+  });
+
+  it('should update an existing Location based on the zip code provided', () => {
+    let request = service.updateLocationZipCode(location.id,locationRequest.zipCode)
+      .subscribe((response: any) => {
+        expect(response).toEqual(locationRequest.zipCode);
+      });
+    const url = environment.locationBackendUrl + "/locations/zipCode/" + locationRequest.zipCode;
+    const mockRequest = httpMock.expectOne(url);
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(locationRequest);
+    httpMock.verify();
+    request.unsubscribe();
+  });
+
+  it('should delete an existing Location based on the zip code provided', () => {
+    let request = service.deleteLocation(location.id)
+      .subscribe((response: any) => {
+        expect(response).toEqual(location.id);
+      });
+    const url = environment.locationBackendUrl + "/locations/id/" + location.id;
+    const mockRequest = httpMock.expectOne(url);
+    expect(mockRequest.cancelled).toBeTruthy;
+    mockRequest.flush(locationRequest);
+    httpMock.verify();
+    request.unsubscribe();
+  });
+
+
+
 
   /**************************************************************************************
   * methods scraped from location service  java application to help outline testing 
