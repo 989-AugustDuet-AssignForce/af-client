@@ -4,7 +4,6 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { POINT_CONVERSION_UNCOMPRESSED } from 'node:constants';
 import { RoomRequestDto } from '../models/room-request-dto';
 
 import { RoomService } from './room.service';
