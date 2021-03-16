@@ -4,6 +4,9 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { environment } from 'src/environments/environment';
+import { RoomDetailsDto } from '../models/room-details-dto';
+import { RoomDto } from '../models/room-dto';
 import { RoomRequestDto } from '../models/room-request-dto';
 
 import { RoomService } from './room.service';
@@ -12,7 +15,8 @@ describe('RoomService', () => {
   let service: RoomService;
 
   let httpMock: HttpTestingController;
-
+  let rooms: RoomDto[];
+  let roomDetails: RoomDetailsDto[];
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -21,88 +25,170 @@ describe('RoomService', () => {
     httpMock = TestBed.inject(HttpTestingController);
   });
 
+  rooms = [
+    new RoomDto(1, 'PHYSICAL', 'MEETING'),
+    new RoomDto(2, 'REMOTE', 'MEETING'),
+    new RoomDto(3, 'VIRTUAL', 'MEETING'),
+    new RoomDto(4, 'PHYSICAL', 'TRAINING'),
+    new RoomDto(5, 'REMOTE', 'TRAINING'),
+    new RoomDto(6, 'VIRTUAL', 'TRAINING'),
+  ];
+  roomDetails = [
+    new RoomDetailsDto(
+      1,
+      'Test Room 1',
+      'PHYSICAL',
+      'MEETING',
+      10,
+      2,
+      new Set()
+    ),
+    new RoomDetailsDto(2, 'Test Room 2', 'REMOTE', 'MEETING', 10, 2, new Set()),
+    new RoomDetailsDto(
+      3,
+      'Test Room 3',
+      'VIRTUAL',
+      'MEETING',
+      10,
+      2,
+      new Set()
+    ),
+    new RoomDetailsDto(
+      4,
+      'Test Room 4',
+      'PHYSICAL',
+      'TRAINING',
+      10,
+      2,
+      new Set()
+    ),
+    new RoomDetailsDto(
+      5,
+      'Test Room 5',
+      'REMOTE',
+      'TRAINING',
+      10,
+      2,
+      new Set()
+    ),
+    new RoomDetailsDto(
+      6,
+      'Test Room 6',
+      'VIRTUAL',
+      'TRAINING',
+      10,
+      2,
+      new Set()
+    ),
+  ];
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
   it('should provide an array of all rooms', () => {
-    const roomsObservable = service.getAllRooms();
-    let response;
+    const expected: RoomDto[] = roomDetails;
 
-    roomsObservable.subscribe((res) => {
-      response = res;
+    const request = service.getAllRooms().subscribe((response: RoomDto[]) => {
+      expect(response).toEqual(expected);
     });
 
-    expect(response).toBeInstanceOf(Array);
+    const url = environment.locationBackendUrl + `/rooms`;
+    const mockRequest = httpMock.expectOne(url);
+
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(expected);
+    httpMock.verify();
+    request.unsubscribe();
   });
 
   it('should provide a list of all remote training rooms', () => {
-    const trainingRoomsObservable = service.getAllRemoteTrainingRooms();
-    let response;
+    const expected: RoomDto[] = rooms.filter(
+      (room) => room.occupation === 'REMOTE' && room.type === 'TRAINING'
+    );
+    const request = service
+      .getAllRemoteTrainingRooms()
+      .subscribe((response: RoomDto[]) => {
+        expect(response).toEqual(expected);
+      });
+    const url = environment.locationBackendUrl + `/rooms/remote/training`;
+    const mockRequest = httpMock.expectOne(url);
 
-    trainingRoomsObservable.subscribe((res) => {
-      response = res;
-    });
-    expect(response).toBeInstanceOf(Array);
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(expected);
+    httpMock.verify();
+    request.unsubscribe();
   });
 
   it('should provide a list of all remote meeting rooms', () => {
-    const meetingRoomsObservable = service.getAllRemoteMeetingRooms();
-    let response;
+    const expected: RoomDto[] = rooms.filter(
+      (room) => room.occupation === 'REMOTE' && room.type === 'MEETING'
+    );
+    const request = service
+      .getAllRemoteMeetingRooms()
+      .subscribe((response: RoomDto[]) => {
+        expect(response).toEqual(expected);
+      });
+    const url = environment.locationBackendUrl + `/rooms/remote/meeting`;
+    const mockRequest = httpMock.expectOne(url);
 
-    meetingRoomsObservable.subscribe((res) => {
-      response = res;
-    });
-    expect(response).toBeInstanceOf(Array);
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(expected);
+    httpMock.verify();
+    request.unsubscribe();
   });
 
   it('should provide a array of all physical meeting rooms', () => {
-    const physicalMeetingRoomsObservable = service.getAllPhysicalMeetingRooms();
-    let response;
+    const expected: RoomDto[] = rooms.filter(
+      (room) => room.occupation === 'PHYSICAL' && room.type === 'MEETING'
+    );
+    const request = service
+      .getAllPhysicalMeetingRooms()
+      .subscribe((response: RoomDto[]) => {
+        expect(response).toEqual(expected);
+      });
+    const url = environment.locationBackendUrl + `/rooms/physical/meeting`;
+    const mockRequest = httpMock.expectOne(url);
 
-    physicalMeetingRoomsObservable.subscribe((res) => {
-      response = res;
-    });
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(expected);
+    httpMock.verify();
+    request.unsubscribe();
   });
 
   it('should provide an array of all physical training rooms', () => {
-    const physicalTrainingRoomsObservable = service.getAllPhysicalTrainingRooms();
-    let response;
+    const expected: RoomDto[] = rooms.filter(
+      (room) => room.occupation === 'PHYSICAL' && room.type === 'TRAINING'
+    );
+    const request = service
+      .getAllPhysicalTrainingRooms()
+      .subscribe((response: RoomDto[]) => {
+        expect(response).toEqual(expected);
+      });
+    const url = environment.locationBackendUrl + `/rooms/physical/training`;
+    const mockRequest = httpMock.expectOne(url);
 
-    physicalTrainingRoomsObservable.subscribe((res) => {
-      response = res;
-    });
-
-    expect(response).toBeInstanceOf(Array);
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(expected);
+    httpMock.verify();
+    request.unsubscribe();
   });
 
   it('should provide an array of all training rooms', () => {
-    const allTrainingRoomsObservable = service.getTrainingRooms();
-    let response;
-    allTrainingRoomsObservable.subscribe((res) => {
-      response = res;
-    });
-  });
-
-  it('should update an existing room', () => {
-    const expected = new HttpResponse({ body: '', status: 204 });
-    const updateRoomObservable = service.updateRoom(
-      1,
-      new RoomRequestDto(
-        'Test Room A',
-        'REMOTE',
-        'MEETING',
-        20,
-        2,
-        new Set(['Projector', 'STREAMING'])
-      )
+    const expected: RoomDto[] = rooms.filter(
+      (room) => room.occupation === 'TRAINING'
     );
+    const request = service
+      .getAllTrainingRooms()
+      .subscribe((response: RoomDto[]) => {
+        expect(response).toEqual(expected);
+      });
+    const url = environment.locationBackendUrl + `/rooms/training`;
+    const mockRequest = httpMock.expectOne(url);
 
-    // const request = updateRoomObservable.subscribe(
-    //   (response: HttpResponse<any>) => {
-    //     expect(response).toEqual(expected);
-    //   }
-    // );
-    // request.unsubscribe();
+    expect(mockRequest.cancelled).toBeFalsy();
+    mockRequest.flush(expected);
+    httpMock.verify();
+    request.unsubscribe();
   });
 });

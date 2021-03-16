@@ -1,4 +1,4 @@
-<div class="details-frame">
+<div *ngIf="details" class="details-frame">
   <button routerLink="..">Back to list</button>
   <p>Name: {{ details.name }}</p>
   <p>Type: {{ details.type }}</p>

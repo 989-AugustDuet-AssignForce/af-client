@@ -11,9 +11,10 @@ describe('RoomDetailsComponent', () => {
   const fakeActivatedRoute = {
     snapshot: {
       queryParams: {
-        returnUrl: '/'
-      }
-    }
+        returnUrl: '/',
+        roomId: 1,
+      },
+    },
   };
 
   beforeEach(async () => {
@@ -22,13 +23,13 @@ describe('RoomDetailsComponent', () => {
       imports: [HttpClientTestingModule],
       providers: [
         HttpClientTestingModule,
-        RoomService, {
+        RoomService,
+        {
           provide: ActivatedRoute,
-          useFactory: () => fakeActivatedRoute
-        }
-      ]
-    })
-    .compileComponents();
+          useFactory: () => fakeActivatedRoute,
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -14,7 +14,7 @@ export class RoomDetailsComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  deatils: RoomDetailsDto;
+  details: RoomDetailsDto;
 
   ngOnInit(): void {
     this.getRoom();
@@ -24,7 +24,7 @@ export class RoomDetailsComponent implements OnInit {
     const id = await this.route.snapshot.paramMap.get('roomId');
     console.log(id);
     this.roomService.getRoom(parseInt(id)).subscribe((room) => {
-      this.deatils = room;
+      this.details = room;
     });
   }
 }
