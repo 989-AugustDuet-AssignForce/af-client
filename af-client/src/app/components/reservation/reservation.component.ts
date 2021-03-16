@@ -4,6 +4,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { CaliberService } from 'src/app/services/caliber.service';
 import { BacthDTO } from 'src/app/models/batch-dto';
+import { RoomService } from 'src/app/services/room.service';
+import { RoomDto } from 'src/app/models/room-dto';
+import { BuildingService } from 'src/app/services/building.service';
+import { BuildingDto } from 'src/app/models/building-dto';
+import { LocationService } from 'src/app/services/location.service';
+import { LocationDto } from 'src/app/models/location-dto';
 
 @Component({
   selector: 'app-reservation',
@@ -17,17 +23,26 @@ export class ReservationComponent implements OnInit {
   buildingId: number;
   reservations: Reservation[];
   arr = [1, 2, 3];
+  rooms = [];
+  buildings = [];
+  locations = [];
   batches: BacthDTO[];
+  selectedLocationId: number;
+  selectedBuildingId: number;
 
   constructor(
     private reservationService: ReservationService,
     private router: Router,
-    private caliberService: CaliberService) {
+    private caliberService: CaliberService,
+    private roomService: RoomService,
+    private buildingService: BuildingService,
+    private locationService: LocationService) {
 
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         // Function you want to call here
         this.getAllReservations();
+        this.getLocations();
       }
     });
   }
@@ -45,7 +60,43 @@ export class ReservationComponent implements OnInit {
       });
   }
 
+  selectBuilding(event: any): void {
+    this.selectedBuildingId = event.target.value;
+    this.getRooms(event.target.value)
+  }
+  getRooms(id: number): void {
+    this.roomService.getRoomsByBuildingId(id).subscribe(
+      (roomsList: RoomDto[]) => {
+        let temp = [];
+        roomsList.forEach(room => temp.push(room.id));
+        this.rooms = temp;
+        }
+    )
+  }
+  selectLocation(event: any) {
+      this.selectedLocationId = event.target.value;
+      this.getBuildings();
+  }
+  getBuildings(): void {
+    this.buildingService.getBuildingsByLocationId(this.selectedLocationId).subscribe(
+      (buildings: BuildingDto[]) => {
+        let temp = [];
+        buildings.forEach(building => temp.push(building.id))
+        this.buildings = temp;
+      }
+    )
+  }
+
+  getLocations(): void {
+    this.locationService.getAllLocations().subscribe(
+      (locations: LocationDto[]) => {
+        locations.forEach(location => this.locations.push(location.id))
+      }
+    )
+  }
+
   getAllReservationsByRoomId(roomId: number): void {
+    this.buildingId = null;
     this.reservationService
       .getAllReservationsByRoomId(roomId)
       .subscribe((reservations: Reservation[]) => {
@@ -72,6 +123,7 @@ export class ReservationComponent implements OnInit {
   }
 
   getAllReservationsByBuildingId(buildingId: number): void {
+    this.roomId = null;
     this.reservationService
       .getAllReservations()
       .subscribe((reservations: Reservation[]) => {

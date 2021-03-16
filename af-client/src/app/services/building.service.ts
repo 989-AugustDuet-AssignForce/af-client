@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { BuildingRequestDto } from '../models/building-request-dto';
+import { BuildingDto } from '../models/building-dto';
 
 
 
@@ -24,6 +25,16 @@ export class BuildingService {
   //getBuilding(index: number){
 
   //}
+  getBuildings(): Observable<BuildingDto[]>{
+    let url: string  = environment.locationBackendUrl+"/buildings";
+    return this.httpClient.get<BuildingDto[]>(url);
+  }
+
+  getBuildingsByLocationId(id: number): Observable<BuildingDto[]>{
+    let url: string  = environment.locationBackendUrl+`/buildings/locations/${id}/buildings`;
+    return this.httpClient.get<BuildingDto[]>(url);
+  }
+
   updateBuildingCity(index: number, city: String): Observable<Object>{
 
     let url: string  = environment.locationBackendUrl+"/buildings/"+index+"/city/"+city+"/";
