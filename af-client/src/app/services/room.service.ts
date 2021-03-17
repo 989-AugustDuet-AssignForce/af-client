@@ -11,7 +11,12 @@ import { RoomRequestDto } from '../models/room-request-dto';
 })
 export class RoomService {
   constructor(private httpClient: HttpClient) {}
-  ilsDto;
+
+  getAllTrainingRooms(): Observable<RoomDto[]> {
+    const url = environment.locationBackendUrl + '/rooms/training';
+    return this.httpClient.get<RoomDto[]>(url);
+  }
+
   getAllRooms(): Observable<RoomDto[]> {
     const url = environment.locationBackendUrl + '/rooms';
     return this.httpClient.get<RoomDto[]>(url);
