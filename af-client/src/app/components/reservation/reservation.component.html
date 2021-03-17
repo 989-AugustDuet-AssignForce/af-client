@@ -26,21 +26,21 @@
       <h2>Add Reservation</h2>
       <div>
         <label for="reservation-LocationId">LocationId: </label>
-        <select name="locationId" id="locationId" (change)="selectLocation($event)" ngModel>
+        <select name="locationId" id="locationId" (change)="selectLocation($event)" [(ngModel)] = "selectedLocationId">
           <option value="">Select LocationId</option>
           <option *ngFor="let val of locations" [value]="val">{{ val }}</option>
         </select>
       </div>
       <div>
         <label for="reservation-BuildingId">BuildingId: </label>
-        <select name="buildingId" id="buildingId" (change)="selectBuilding($event)" ngModel>
+        <select name="buildingId" (change)="selectBuilding($event)" [(ngModel)] = "selectedBuildingId" [disabled]="selectedLocationId==null">
           <option value="">Select BuildingId</option>
           <option *ngFor="let val of buildings" [value]="val">{{ val }}</option>
         </select>
       </div>
       <div>
         <label for="reservation-RoomId">RoomId: </label>
-        <select name="roomId" id="roomId" ngModel>
+        <select name="roomId" id="roomId" [disabled] = "selectedBuildingId==null">
           <option value="">Select RoomId</option>
           <option *ngFor="let val of rooms" [value]="val">{{ val }}</option>
         </select>
