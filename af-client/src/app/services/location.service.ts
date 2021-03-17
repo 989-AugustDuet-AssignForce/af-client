@@ -35,27 +35,27 @@ export class LocationService {
   }
 
   createLocation(locationRequestDto: LocationRequestDto) {
-    return this.http.post<LocationRequestDto>(`${this.apiBase}/locations`, locationRequestDto)
+    return this.http.post<any>(`${this.apiBase}/locations`, locationRequestDto)
   }
 
   updateLocation(index:number,locationRequestDto: LocationRequestDto) {
-    return this.http.put<LocationRequestDto>(`${this.apiBase}/locations/${index}`, locationRequestDto)
+    return this.http.put<any>(`${this.apiBase}/locations/${index}`, locationRequestDto)
   }
 
   updateLocationZipCode(index: number, zipCode: string) {
-    return this.http.patch<string>(`${this.apiBase}/locations/${index}/updateZipCode`,zipCode);
+    return this.http.patch<any>(`${this.apiBase}/locations/${index}/updateZipCode`,zipCode);
   }
 
   updateLocationCity(index: number, city: string) {
-    return this.http.patch<string>(`${this.apiBase}/locations/${index}/updateCity`, city)
+    return this.http.patch<any>(`${this.apiBase}/locations/${index}/updateCity`, city)
   }
 
   updateLocationState(index: number, state: string){
-    return this.http.patch<string>(`${this.apiBase}/locations/${index}/updateState`, state)
+    return this.http.patch<any>(`${this.apiBase}/locations/${index}/updateState`, state)
   }
 
   deleteLocation(index: number){
-    return this.http.delete<string>(`${this.apiBase}/locations/${index}`)
+    return this.http.delete<any>(`${this.apiBase}/locations/${index}`)
   }
 
 }

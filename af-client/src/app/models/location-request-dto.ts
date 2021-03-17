@@ -8,6 +8,9 @@ export class LocationRequestDto {
         zipCode: string
     )
     {
+        this.state = state;
+        this.city = city;
+        this.zipCode = zipCode;
 
     }
 }

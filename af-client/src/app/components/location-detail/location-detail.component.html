@@ -1,0 +1,39 @@
+<div *ngIf="locationDto; else noLocation">
+    <div class = "detail-form">
+        <h2>Location: {{locationDto.id}} Details</h2>
+      <div>
+        <label for="location-city">Location city: </label>
+        <input id="location-city" [(ngModel)]="locationDto.city" placeholder="city"/>
+      </div>
+      <div>
+        <label for="location-state">Location state: </label>
+        <input id="location-state" [(ngModel)]="locationDto.state" placeholder="state"/>
+      </div>
+      <div>
+        <label for="location-zipcode">Location zip code: </label>
+        <input id="location-zipcode" [(ngModel)]="locationDto.zipCode" placeholder="Zip code"/>
+      </div>
+      <br>
+   <div id='edit-button'>
+    <button routerLink=".." (click)="update()">SAVE</button>
+    <div class="divider"></div>
+    <button routerLink=".."(click)="delete()">DELETE</button> 
+   </div>
+   <h1 *ngIf="message">{{message}}</h1>
+   <h3> Buildings</h3>
+   <ul>
+       <li *ngFor="let building of locationDto.buildings">
+           <span>ID: {{building.id}}</span>
+           <br>
+           <span>Street Address: {{building.street_address}}</span>
+           <br>
+           <span>Total floors: {{building.totalFloors}} </span>
+           <br>
+           <span>Number of rooms: {{building.numRooms}} </span>
+       </li>
+   </ul>
+  </div>
+</div>
+<ng-template #noLocation>
+    <h1 class="error">No Location Selected</h1>
+</ng-template>

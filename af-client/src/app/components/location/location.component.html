@@ -1,11 +1,29 @@
+<div class = "location-creation">
+    <div class = "col-md-12">
+        <h3 class="mb-3 text-center">Create Location</h3>
+        <div class="form-group">
+            <input type = "text" [(ngModel)]= "locationRequestDto.state" class = "form-control" placeholder="State">
+        </div>
+        <br>
+        <div class="form-group">
+            <input type="text" [(ngModel)]="locationRequestDto.city" class="form-control" placeholder="City">
+          </div>
+          <br>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="locationRequestDto.zipCode" class="form-control" placeholder="Zip Code">
+          </div> 
+          <br> 
+    </div>
+    <button (click)="postLocations(locationRequestDto)">Add New Location</button>
+</div>
+<hr><br>
+
 <div class="location-container">
-    
     <div class="getLocationByTwoDropDowns">
         <h3>Search Locations:</h3>
         <form #typeForm="ngForm" (ngSubmit)="selectSearchType(typeForm)">
             <label>Search By: </label>
             <select name="searchType" id="search-type" ngModel>
-                <option value="id">ID</option>
                 <option value="city">City</option>
                 <option value="state">State</option>
                 <option value="zip">Zip Code</option>
@@ -16,20 +34,10 @@
     </div>
 
     <div class="getLocationOptions">
-        <form #idForm="ngForm" (ngSubmit)="searchId(idForm)" id="id-form" style="display: none;">
-            <span>ID: </span>
-            <select name="searchId" id="type-id" ngModel> 
-                <option *ngFor="let location of pulledLocations" [value]= "location.id">
-                    {{location.id}}
-                </option>
-            </select>
-            <button>Search</button>
-        </form>
-
         <form #cityForm="ngForm" (ngSubmit)="searchCity(cityForm)" id="city-form" style="display: none;">
             <span>City: </span>
             <select name="searchCity" id="type-city" ngModel>
-                <option *ngFor="let location of pulledLocations" [value]= "location.city">
+                <option *ngFor="let location of allLocations" [value]= "location.city">
                     {{location.city}}
                 </option>
             </select>
@@ -39,7 +47,7 @@
         <form #stateForm="ngForm" (ngSubmit)="searchState(stateForm)" id="state-form" style="display: none;">
             <span>State: </span>
             <select name="searchState" id="type-state" ngModel>
-                <option *ngFor="let location of pulledLocations" [value]= "location.state">
+                <option *ngFor="let location of allLocations" [value]= "location.state">
                     {{location.state}}
                 </option>
             </select>
@@ -49,7 +57,7 @@
         <form #zipForm="ngForm" (ngSubmit)="searchZip(zipForm)" id="zip-form" style="display: none;">
             <span>Zip Code: </span>
             <select name="searchZip" id="type-zip" ngModel>
-                <option *ngFor="let location of pulledLocations" [value]= "location.zipCode">
+                <option *ngFor="let location of allLocations" [value]= "location.zipCode">
                     {{location.zipCode}}
                 </option>
             </select>
@@ -58,108 +66,28 @@
     </div>
     <br><hr>
 
-    <br>
-    <div id="search-results-div"></div>
-    <br>
-
     <hr>
     <h3>All Locations:</h3> 
     <br>
-    <div 
-        *ngFor="let location of pulledLocations"
-    >
+    <div *ngFor="let location of pulledLocations">
+     <a routerLink="{{ location.id }}">
         <span>ID: {{location.id}}</span>
+    </a>
         <br>
-        <span>{{location.city}} </span>
-        <span>{{location.state}} </span>
-        <span>{{location.zipCode}} </span>
+        <span>City: {{location.city}} </span>
+        <br>
+        <span>State: {{location.state}} </span>
+        <br>
+        <span>ZipCode: {{location.zipCode}} </span>
         <br>
         <span>Buildings: </span>
         <span>{{location.numBuildings}}</span>
         <br><br>
     </div>
     <br>
-    
     <hr><br>
-    <div class = "location-container">
-        <div class = "col-md-12">
-            <h3 class="mb-3 text-center">Create Location</h3>
-            <div class="form-group">
-                <input type = "text" [(ngModel)]= "locationRequestDto.state" class = "form-control" placeholder="State">
-            </div>
-            <br>
-            <div class="form-group">
-                <input type="text" [(ngModel)]="locationRequestDto.city" class="form-control" placeholder="City">
-              </div>
-              <br>
-              <div class="form-group">
-                <input type="text" [(ngModel)]="locationRequestDto.zipCode" class="form-control" placeholder="Zip Code">
-              </div> 
-              <br> 
-        </div>
-        <button (click)="postLocations(locationRequestDto)">Add New Location</button>
-    </div>
-    <hr><br>
-    <h3 class="mb-3 text-center">Update Location</h3>
-    <div class = "form-group">
-        <input type = "number" [(ngModel)] = "index" class = "form-control" placeholder="ID">
-    </div>
-    <br>
-     <div class="form-group">
-        <input type = "text" [(ngModel)]= "locationRequestDto.state" class = "form-control" placeholder="State">
-    </div>
-    <br>
-    <div class="form-group">
-        <input type="text" [(ngModel)]="locationRequestDto.city" class="form-control" placeholder="City">
-      </div>
-      <br>
-      <div class="form-group">
-        <input type="text" [(ngModel)]="locationRequestDto.zipCode" class="form-control" placeholder="Zip Code">
-      </div> 
-      <br> 
-<button (click)="updateLocation(index, locationRequestDto)">Update Location</button>
-<hr><br>
-<h3 class="mb-3 text-center">Update Location State</h3>
-<div class = "form-group">
-    <input type = "number" [(ngModel)] = "index" class = "form-control" placeholder="ID">
-</div>
-<br>
- <div class="form-group">
-    <input type = "text" [(ngModel)]= "locationRequestDto.state" class = "form-control" placeholder="State">
-</div>
-<br>
-<button (click)="updateStateLocation(index, locationRequestDto.state)">Update Location State</button>
-
-<hr><br>
-<h3 class="mb-3 text-center">Update Location City</h3>
-<div class = "form-group">
-    <input type = "number" [(ngModel)] = "index" class = "form-control" placeholder="ID">
-</div>
-<br>
- <div class="form-group">
-    <input type = "text" [(ngModel)]= "locationRequestDto.city" class = "form-control" placeholder="City">
-</div>
-<br>
-<button (click)="updateCityLocation(index, locationRequestDto.city)">Update Location City</button>
-<hr><br>
-<h3 class="mb-3 text-center">Update Location Zip Code</h3>
-<div class = "form-group">
-    <input type = "number" [(ngModel)] = "index" class = "form-control" placeholder="ID">
-</div>
-<br>
- <div class="form-group">
-    <input type = "text" [(ngModel)]= "locationRequestDto.zipCode" class = "form-control" placeholder="ZipCode">
-</div>
-<br>
-<button (click)="updateZipCodeLocation(index, locationRequestDto.zipCode)">Update Location ZipCode</button>
-<hr><br>
-<h3 class="mb-3 text-center">Delete Location</h3>
-<div class = "form-group">
-    <input type = "number" [(ngModel)] = "index" class = "form-control" placeholder="ID">
-</div>
-<button (click)="deleteLocation(index)">Delete Location</button>
-<hr><br>
-
     <button (click)="backButton()">Back</button>
     <br><br><br>
     </div>
+    
+ 
