@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LocationDto } from '../models/location-dto';
+import { LocationRequestDto } from '../models/location-request-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,30 @@ export class LocationService {
 
   getLocationById(index:number) {
     return this.http.get<LocationDetailsDto>(`${this.apiBase}/locations/id/${index}`);
+  }
+
+  createLocation(locationRequestDto: LocationRequestDto) {
+    return this.http.post<any>(`${this.apiBase}/locations`, locationRequestDto)
+  }
+
+  updateLocation(index:number,locationRequestDto: LocationRequestDto) {
+    return this.http.put<any>(`${this.apiBase}/locations/${index}`, locationRequestDto)
+  }
+
+  updateLocationZipCode(index: number, zipCode: string) {
+    return this.http.patch<any>(`${this.apiBase}/locations/${index}/updateZipCode`,zipCode);
+  }
+
+  updateLocationCity(index: number, city: string) {
+    return this.http.patch<any>(`${this.apiBase}/locations/${index}/updateCity`, city)
+  }
+
+  updateLocationState(index: number, state: string){
+    return this.http.patch<any>(`${this.apiBase}/locations/${index}/updateState`, state)
+  }
+
+  deleteLocation(index: number){
+    return this.http.delete<any>(`${this.apiBase}/locations/${index}`)
   }
 
 }

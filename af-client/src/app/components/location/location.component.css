@@ -1,7 +1,11 @@
-.getLocationOptions {
-    /* border: 1px solid black; */
-}
+/* .getLocationOptions {
+    border: 1px solid black;
+} */
 
 .getLocationOptions > form > button {
+    margin-left: 15px;
+}
+
+.getLocationByTwoDropDowns > form > button {
     margin-left: 15px;
 }

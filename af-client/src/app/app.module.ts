@@ -11,6 +11,7 @@ import { BuildingComponent } from './components/building/building.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RoomComponent } from './components/room/room.component';
 import { ReservationDetailComponent } from './components/reservation-detail/reservation-detail.component';
+import { LocationDetailComponent } from './components/location-detail/location-detail.component';
 
 import { LocationService } from './services/location.service';
 import { ReservationService } from './services/reservation.service';
@@ -27,6 +28,7 @@ import { RoomDetailsComponent } from './components/room-details/room-details.com
     NavbarComponent,
     ReservationDetailComponent,
     RoomDetailsComponent,
+    LocationDetailComponent
   ],
   imports: [
     BrowserModule,

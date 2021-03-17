@@ -1,26 +1,44 @@
 import { LocationDetailsDto } from './../../models/location-details-dto';
 import { LocationService } from './../../services/location.service';
 import { LocationDto } from './../../models/location-dto';
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NgForm } from '@angular/forms';
+import { LocationRequestDto } from 'src/app/models/location-request-dto';
 
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
-  styleUrls: ['./location.component.css']
+  styleUrls: ['./location.component.css'],
 })
 export class LocationComponent implements OnInit {
-
   pulledLocations: LocationDto[];
-  constructor(private locationService: LocationService, private router: Router) { }
+  allLocations: LocationDto[];
+  locationDto: LocationDto;
+  locationDetailsDto: LocationDetailsDto;
+
+  constructor(
+    private locationService: LocationService,
+    private router: Router
+  ) {}
+
+  @Input() locationRequestDto = {state: '', city: '', zipCode: ''}
 
   ngOnInit(): void {
-    this.locationService.getAllLocations()
+    this.locationService
+      .getAllLocations()
       .subscribe((locations: LocationDto[]) => {
-        console.log('getting locations');
+        this.allLocations = locations;
         this.pulledLocations = locations;
       });
+  }
+
+  deleteLocation(index: number): any {
+    this.locationService.deleteLocation(index).subscribe((data: {}) => {
+      alert('Location deleted!');
+      this.router.navigate([''])
+    });
   }
 
   backButton(): void {
@@ -29,166 +47,51 @@ export class LocationComponent implements OnInit {
 
   searchCity(cityForm): void {
     let city = cityForm.value.searchCity;
-    console.log(city);
-    this.displayCityLocations(city);
+    this.locationService.getLocationsByCity(city).subscribe((response) => {
+      this.pulledLocations = response;
+    })
   }
 
   searchState(stateForm): void {
     let state = stateForm.value.searchState;
-    console.log(state);
-    this.displayStateLocations(state);
+    this.locationService.getLocationsByState(state).subscribe((response) => {
+      this.pulledLocations = response;
+    });
   }
-  
+
   searchZip(zipForm): void {
     let zip = zipForm.value.searchZip;
-    console.log(zip);
-    this.displayZipCodeLocations(zip);
+    this.locationService.getLocationsByZipCode(zip).subscribe((response) => {
+      this.pulledLocations = response;
+    })
   }
 
-  searchId(idForm): void {
-    let id = idForm.value.searchId;
-    console.log(id);
-    this.displayIdLocation(id);
+  postLocations(locationRequestDto: LocationRequestDto) {
+    this.locationService.createLocation(locationRequestDto).subscribe((data: {}) => {
+      alert('Location added!');
+      location.reload();
+    })
   }
 
-  displayCityLocations(city): void {
-    this.locationService.getLocationsByCity(city)
-      .subscribe((searchResults: LocationDto[]) => {
-        searchResults.forEach(function (value) {
-          if(value.city) {
-            if(document.getElementById('search-div')) {
-              document.getElementById('search-div').remove();
-            }
 
-            let searchedDiv = document.createElement('div');
-            searchedDiv.id = 'search-div';
-            let label = document.createElement('label');
-            let ptag1 = document.createElement('p');
-            let ptag2 = document.createElement('p');
-            let ptag3 = document.createElement('p');
-            label.innerText = 'Location Results: '
-            ptag1.innerText = 'ID: '+value.id;
-            ptag2.innerText = value.city+' '+value.state+' '+value.zipCode;
-            ptag3.innerText = 'Buildings: '+value.numBuildings;
-            searchedDiv.appendChild(label);
-            searchedDiv.appendChild(ptag1);
-            searchedDiv.appendChild(ptag2);
-            searchedDiv.appendChild(ptag3);
- 
-            document.getElementById('testy').appendChild(searchedDiv);
-          }
-        })
-      })
-  }
-
-  displayStateLocations(state): void {
-    this.locationService.getLocationsByState(state)
-      .subscribe((searchResults: LocationDto[]) => {
-        searchResults.forEach(function (value) {
-          if(value.state) {
-            if(document.getElementById('search-div')) {
-              document.getElementById('search-div').remove();
-            }
-
-            let searchedDiv = document.createElement('div');
-            searchedDiv.id = 'search-div';
-            let label = document.createElement('label');
-            let ptag1 = document.createElement('p');
-            let ptag2 = document.createElement('p');
-            let ptag3 = document.createElement('p');
-            label.innerText = 'Location Results: '
-            ptag1.innerText = 'ID: '+value.id;
-            ptag2.innerText = value.city+' '+value.state+' '+value.zipCode;
-            ptag3.innerText = 'Buildings: '+value.numBuildings;
-            searchedDiv.appendChild(label);
-            searchedDiv.appendChild(ptag1);
-            searchedDiv.appendChild(ptag2);
-            searchedDiv.appendChild(ptag3);
- 
-            document.getElementById('testy').appendChild(searchedDiv);
-          }
-        })
-      })
-  }
-
-  displayZipCodeLocations(zipCode): void {
-    this.locationService.getLocationsByZipCode(zipCode)
-      .subscribe((searchResults: LocationDto[]) => {
-        searchResults.forEach(function (value) {
-          if(value.zipCode) {
-            if(document.getElementById('search-div')) {
-              document.getElementById('search-div').remove();
-            }
-
-            let searchedDiv = document.createElement('div');
-            searchedDiv.id = 'search-div';
-            let label = document.createElement('label');
-            let ptag1 = document.createElement('p');
-            let ptag2 = document.createElement('p');
-            let ptag3 = document.createElement('p');
-            label.innerText = 'Location Results: '
-            ptag1.innerText = 'ID: '+value.id;
-            ptag2.innerText = value.city+' '+value.state+' '+value.zipCode;
-            ptag3.innerText = 'Buildings: '+value.numBuildings;
-            searchedDiv.appendChild(label);
-            searchedDiv.appendChild(ptag1);
-            searchedDiv.appendChild(ptag2);
-            searchedDiv.appendChild(ptag3);
- 
-            document.getElementById('testy').appendChild(searchedDiv);
-          }
-        })
-      })
-  }
-
-  displayIdLocation(index): void {
-    this.locationService.getLocationById(index)
-      .subscribe((searchResults: LocationDetailsDto) => {
-          if(searchResults.id) {
-            if(document.getElementById('search-div')) {
-              document.getElementById('search-div').remove();
-            }
-
-            let searchedDiv = document.createElement('div');
-            searchedDiv.id = 'search-div';
-            let label = document.createElement('label');
-            let ptag1 = document.createElement('p');
-            let ptag2 = document.createElement('p');
-            let ptag3 = document.createElement('p');
-            label.innerText = 'Location Results: '
-            ptag1.innerText = 'ID: '+searchResults.id;
-            ptag2.innerText = searchResults.city+' '+searchResults.state+' '+searchResults.zipCode;
-            ptag3.innerText = 'Buildings: '+searchResults.buildings.length;
-            let buildingdiv = document.createElement('div');
-            
-            searchResults.buildings.forEach(function (value) {
-              console.log(value.id);
-              let buildingtag1 = document.createElement('p');
-              let buildingtag2 = document.createElement('p');
-              let buildingtag3 = document.createElement('p');
-              let buildingtag4 = document.createElement('p');
-              let buildingbr = document.createElement('br');
-              buildingtag1.innerText = 'Building ID: '+value.id;
-              buildingtag2.innerText = value.street_address;
-              buildingtag3.innerText = 'Floors: '+value.totalFloors;
-              buildingtag4.innerText = 'Rooms: '+value.numRooms;
-              
-              buildingdiv.style.marginLeft = '5%';
-              buildingdiv.appendChild(buildingtag1);
-              buildingdiv.appendChild(buildingtag2);
-              buildingdiv.appendChild(buildingtag3);
-              buildingdiv.appendChild(buildingtag4);
-              buildingdiv.appendChild(buildingbr);
-            });
-            searchedDiv.appendChild(label);
-            searchedDiv.appendChild(ptag1);
-            searchedDiv.appendChild(ptag2);
-            searchedDiv.appendChild(ptag3);
-            searchedDiv.appendChild(buildingdiv);
- 
-            document.getElementById('testy').appendChild(searchedDiv);
-          }
-      })
+  selectSearchType(typeForm): void {
+    let type = typeForm.value.searchType;
+   if(type == 'city') {
+      document.getElementById('state-form').style.display = 'none';
+      document.getElementById('zip-form').style.display = 'none';
+      document.getElementById('city-form').style.display = 'block';
+    } else if(type == 'state') {
+      document.getElementById('city-form').style.display = 'none';
+      document.getElementById('zip-form').style.display = 'none';
+      document.getElementById('state-form').style.display = 'block';
+    } else if(type == 'zip') {
+      document.getElementById('city-form').style.display = 'none';
+      document.getElementById('state-form').style.display = 'none';
+      document.getElementById('zip-form').style.display = 'block';
+    }
+    
   }
 
 }
+
+

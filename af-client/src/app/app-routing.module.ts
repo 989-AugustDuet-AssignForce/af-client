@@ -7,11 +7,13 @@ import { ReservationComponent } from './components/reservation/reservation.compo
 import { RoomComponent } from './components/room/room.component';
 import { ReservationDetailComponent } from './components/reservation-detail/reservation-detail.component';
 import { RoomDetailsComponent } from './components/room-details/room-details.component';
+import { LocationDetailComponent } from './components/location-detail/location-detail.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: '/location', pathMatch: 'full' },
   { path: 'location', component: LocationComponent },
   { path: 'building', component: BuildingComponent },
+  {path: 'location/:id', component: LocationDetailComponent},
   { path: 'room', component: RoomComponent },
   { path: 'reservation', component: ReservationComponent },
   { path: 'reservation/:reservationId', component: ReservationDetailComponent },

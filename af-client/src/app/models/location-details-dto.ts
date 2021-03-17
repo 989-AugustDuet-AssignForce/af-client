@@ -10,6 +10,6 @@ export class LocationDetailsDto {
         city: string, 
         state: string, 
         zipCode: string, 
-        buildings: BuildingDto[]
+        buildings?: BuildingDto[]
     ) {}
 }
