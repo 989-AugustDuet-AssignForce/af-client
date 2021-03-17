@@ -27,7 +27,7 @@ export class ReservationComponent implements OnInit {
   buildings = [];
   locations = [];
   batches: BacthDTO[];
-  selectedLocationId: number;
+  selectedLocationId: 0;
   selectedBuildingId: number;
 
   constructor(
@@ -74,7 +74,6 @@ export class ReservationComponent implements OnInit {
     )
   }
   selectLocation(event: any) {
-      this.selectedLocationId = event.target.value;
       this.getBuildings();
   }
   getBuildings(): void {
@@ -172,4 +171,5 @@ export class ReservationComponent implements OnInit {
       this.batches = batches;
     });
   }
+
 }
